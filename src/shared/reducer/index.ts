@@ -1,7 +1,6 @@
 import { combineReducers, Reducer } from 'redux';
 
-import { ActionsType } from '../../App';
-import { ActionKeys } from '../action';
+import { ActionKeys, ActionsType } from '../action';
 import { AppState } from '../store';
 
 type ByIdState = AppState['trackingPeriods']['byId'];
