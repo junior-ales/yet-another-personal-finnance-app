@@ -1,4 +1,7 @@
-import { CreateTrackingPeriodAction, OtherAction } from '../../app/action';
+import {
+  CreateTrackingPeriodAction,
+  OtherAction
+} from '../../tracking-period/tracking-period-new/action';
 
 export enum ActionKeys {
   CREATE_TRACKING_PERIOD = 'CREATE_TRACKING_PERIOD',

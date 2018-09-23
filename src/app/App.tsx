@@ -1,27 +1,12 @@
 import * as React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { Link, Route, Switch } from 'react-router-dom';
-import { AppState, initialState, TrackingPeriod } from '../shared/store';
+import TrackingPeriodList from '../tracking-period/tracking-period-list';
+import TrackingPeriodNew from '../tracking-period/tracking-period-new';
 
-interface AppProps {
-  onCreateTrackingPeriod: () => void;
-  trackingPeriods: TrackingPeriod[];
-}
+const Oops = () => <h2>Ooops, something went wrong</h2>;
 
-const Bla1 = () => <div>Eita Bla1</div>;
-const Bla2 = () => <div>nada a ver bla2</div>;
-const BlaDefault = () => <div>selection a bla</div>;
-
-export class App extends React.Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    this.state = initialState;
-  }
-
-  public createTrackingPeriod = () => {
-    this.props.onCreateTrackingPeriod();
-  };
-
+export class App extends React.Component {
   public render() {
     return (
       <section>
@@ -29,22 +14,20 @@ export class App extends React.Component<AppProps, AppState> {
           <h1>Financeiro</h1>
         </header>
 
-        <section>
-          <h2>Clique em inicio para comecar a organizar sua vida financeira</h2>
-        </section>
-
-        <button type="button" onClick={this.createTrackingPeriod}>
-          Cria
-        </button>
-        <Link to="/1bla">Pro 1</Link>
-
         <Switch>
-          <Route path="/1bla" component={Bla1} />
-          <Route path="/2bla" component={Bla2} />
-          <Route component={BlaDefault} />
+          <Redirect exact={true} from="/" to="/tracking-periods" />
+          <Route
+            exact={true}
+            path="/tracking-periods"
+            component={TrackingPeriodList}
+          />
+          <Route
+            exact={true}
+            path="/tracking-periods/new"
+            component={TrackingPeriodNew}
+          />
+          <Route component={Oops} />
         </Switch>
-
-        <p>{JSON.stringify(this.props.trackingPeriods)}</p>
       </section>
     );
   }

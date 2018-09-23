@@ -1,7 +1,7 @@
 import { Action, ActionCreator } from 'redux';
 
-import { ActionKeys } from '../shared/action';
-import { TrackingPeriod } from '../shared/store';
+import { ActionKeys } from '../../shared/action';
+import { TrackingPeriod } from '../../shared/store';
 
 export interface OtherAction extends Action {
   type: ActionKeys.OTHER_ACTION;

@@ -2,18 +2,18 @@ import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
 
-import { ActionsType } from '../shared/action';
-import { AppState, TrackingPeriod } from '../shared/store';
+import { ActionsType } from '../../shared/action';
+import { AppState, TrackingPeriod } from '../../shared/store';
 import { createTrackingPeriod } from './action';
-import { App } from './App';
-import { allTrackingPeriods } from './selector';
+import { newTrackingPeriod } from './selector';
+import { TrackingPeriodNew } from './TrackingPeriodNew';
 
 interface StateToProps {
-  trackingPeriods: TrackingPeriod[];
+  trackingPeriod?: TrackingPeriod;
 }
 
 const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
-  trackingPeriods: allTrackingPeriods(state)
+  trackingPeriod: newTrackingPeriod(state)
 });
 
 interface DispatchToProps {
@@ -26,9 +26,11 @@ const mapDispatchToProps: MapDispatchToProps<DispatchToProps, {}> = (
   onCreateTrackingPeriod: () => dispatch(createTrackingPeriod())
 });
 
+export type TrackingPeriodNewProps = StateToProps & DispatchToProps;
+
 export default (withRouter as any)(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(App)
+  )(TrackingPeriodNew)
 );
