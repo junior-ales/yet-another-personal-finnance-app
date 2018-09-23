@@ -1,24 +1,50 @@
 import * as React from 'react';
 
-import { Input } from './shared/components/input';
-import { Label } from './shared/components/label';
+interface Transaction {
+  id: string;
+  trackingPeriodId: string;
+  type: 'credit' | 'debit';
+  value: number;
+  date: Date;
+  category: 'transport' | 'food' | 'other';
+  description: string;
+}
 
-import './App.css';
+interface TrackingPeriod {
+  id: string;
+  startDate: Date;
+  endDate: Date;
+  initialBudget: number;
+  plannedSavings: number;
+}
+
+interface User {
+  id: string;
+}
 
 interface AppState {
-  inputValue: string;
+  user: User;
+  trackingPeriods: {
+    byId: { [prop: string]: TrackingPeriod };
+    allId: string[];
+  };
+  transactions: {
+    byId: { [prop: string]: Transaction };
+    allId: string[];
+  };
 }
+
+const initialState: AppState = {
+  trackingPeriods: { allId: [], byId: {} },
+  transactions: { allId: [], byId: {} },
+  user: { id: 'user1' }
+};
 
 class App extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
-
-    this.state = { inputValue: '' };
+    this.state = initialState;
   }
-
-  public handleOnChange = (val: string): void => {
-    this.setState({ inputValue: val });
-  };
 
   public render() {
     return (
@@ -26,16 +52,14 @@ class App extends React.Component<{}, AppState> {
         <header>
           <h1>Financeiro</h1>
         </header>
-        <div>
-          <Label htmlFor="initial-budget" value="Orcamento Mensal Inicial" />
-          <Input
-            id="initial-budget"
-            type="number"
-            value={this.state.inputValue}
-            onChange={this.handleOnChange}
-          />
-        </div>
-        <p>{this.state.inputValue}</p>
+
+        <section>
+          <h2>Clique em inicio para comecar a organizar sua vida financeira</h2>
+        </section>
+
+        <button type="button">Inicio</button>
+
+        <p>{JSON.stringify(this.state)}</p>
       </section>
     );
   }
