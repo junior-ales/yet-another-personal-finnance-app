@@ -1,4 +1,5 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
 
 import { ActionsType } from '../shared/action';
@@ -25,7 +26,9 @@ const mapDispatchToProps: MapDispatchToProps<DispatchToProps, {}> = (
   onCreateTrackingPeriod: () => dispatch(createTrackingPeriod())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default (withRouter as any)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);
