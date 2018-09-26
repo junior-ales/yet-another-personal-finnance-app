@@ -1,6 +1,5 @@
 import * as R from 'ramda';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 import { TrackingPeriodListProps } from '.';
 import { TrackingPeriod } from '../../shared/store';
@@ -22,6 +21,10 @@ const TrackingPeriod = ({ trackingPeriod }: TrackingPeriodProps) => (
 export class TrackingPeriodList extends React.Component<
   TrackingPeriodListProps
 > {
+  public handleCreateTrackingPeriod = (): void => {
+    this.props.onCreateTrackingPeriod(this.props.history);
+  };
+
   public render() {
     const { trackingPeriods } = this.props;
 
@@ -38,7 +41,9 @@ export class TrackingPeriodList extends React.Component<
             </ul>
           )}
 
-          <Link to="/tracking-periods/new">Inicio</Link>
+          <button type="button" onClick={this.handleCreateTrackingPeriod}>
+            Inicio
+          </button>
         </section>
       </section>
     );

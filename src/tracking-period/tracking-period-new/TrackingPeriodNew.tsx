@@ -5,12 +5,6 @@ import { TrackingPeriodNewProps } from '.';
 import { TrackingPeriod } from '../../shared/store';
 
 export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
-  constructor(props: TrackingPeriodNewProps) {
-    super(props);
-
-    props.onCreateTrackingPeriod();
-  }
-
   public handleOnSave = (trackingPeriod: TrackingPeriod) => (): void => {
     const { onSaveTrackingPeriod, history } = this.props;
     onSaveTrackingPeriod(trackingPeriod, history);
