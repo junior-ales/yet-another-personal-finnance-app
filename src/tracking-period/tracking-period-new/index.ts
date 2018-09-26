@@ -1,10 +1,11 @@
+import { History } from 'history';
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { Dispatch } from 'redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { ThunkDispatch } from 'redux-thunk';
 
 import { ActionsType } from '../../shared/action';
 import { AppState, TrackingPeriod } from '../../shared/store';
-import { createTrackingPeriod } from './action';
+import { createTrackingPeriod, saveTrackingPeriod } from './action';
 import { editingTrackingPeriod } from './selector';
 import { TrackingPeriodNew } from './TrackingPeriodNew';
 
@@ -18,15 +19,23 @@ const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
 
 interface DispatchToProps {
   onCreateTrackingPeriod: () => void;
+  onSaveTrackingPeriod: (
+    trackingPeriod: TrackingPeriod,
+    history: History
+  ) => void;
 }
 
 const mapDispatchToProps: MapDispatchToProps<DispatchToProps, {}> = (
-  dispatch: Dispatch<ActionsType>
+  dispatch: ThunkDispatch<{}, {}, ActionsType>
 ) => ({
-  onCreateTrackingPeriod: () => dispatch(createTrackingPeriod())
+  onCreateTrackingPeriod: () => dispatch(createTrackingPeriod()),
+  onSaveTrackingPeriod: (trackingPeriod, history) =>
+    dispatch(saveTrackingPeriod(trackingPeriod, history))
 });
 
-export type TrackingPeriodNewProps = StateToProps & DispatchToProps;
+export type TrackingPeriodNewProps = StateToProps &
+  DispatchToProps &
+  RouteComponentProps;
 
 export default (withRouter as any)(
   connect(

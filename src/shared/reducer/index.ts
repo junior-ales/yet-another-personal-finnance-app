@@ -33,11 +33,16 @@ const editTrackPeriodReducer: Reducer<EditTrackPeriod> = (
   state = null,
   action: ActionsType
 ) => {
-  if (action.type === ActionKeys.CREATE_TRACKING_PERIOD) {
-    return action.payload;
-  }
+  switch (action.type) {
+    case ActionKeys.CREATE_TRACKING_PERIOD:
+      return action.payload;
 
-  return state;
+    case ActionKeys.SAVE_TRACKING_PERIOD:
+      return null;
+
+    default:
+      return state;
+  }
 };
 
 const trackingPeriodsReducer = combineReducers({

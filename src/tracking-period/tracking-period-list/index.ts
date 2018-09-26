@@ -1,5 +1,5 @@
 import { connect, MapStateToProps } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { AppState, TrackingPeriod } from '../../shared/store';
 import { allTrackingPeriods } from './selector';
@@ -9,7 +9,7 @@ interface StateToProps {
   trackingPeriods: TrackingPeriod[];
 }
 
-export type TrackingPeriodListProps = StateToProps;
+export type TrackingPeriodListProps = StateToProps & RouteComponentProps;
 
 const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
   trackingPeriods: allTrackingPeriods(state)

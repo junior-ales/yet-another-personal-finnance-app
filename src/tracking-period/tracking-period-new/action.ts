@@ -1,7 +1,8 @@
-import { Action, ActionCreator } from 'redux';
+import { History } from 'history';
+import { Action, Dispatch } from 'redux';
 import * as uuid from 'uuid/v4';
 
-import { ActionKeys } from '../../shared/action';
+import { ActionKeys, ActionsType } from '../../shared/action';
 import { TrackingPeriod } from '../../shared/store';
 
 export interface SaveTrackingPeriodAction extends Action {
@@ -14,9 +15,7 @@ export interface CreateTrackingPeriodAction extends Action {
   payload: TrackingPeriod;
 }
 
-export const createTrackingPeriod: ActionCreator<
-  CreateTrackingPeriodAction
-> = () => ({
+export const createTrackingPeriod = (): CreateTrackingPeriodAction => ({
   payload: {
     endDate: new Date(),
     id: uuid(),
@@ -26,3 +25,18 @@ export const createTrackingPeriod: ActionCreator<
   },
   type: ActionKeys.CREATE_TRACKING_PERIOD
 });
+
+export const saveTrackingPeriod = (
+  trackingPeriod: TrackingPeriod,
+  history: History
+) => async (dispatch: Dispatch<ActionsType>) => {
+  // TODO replace next line with POST to save TP
+  Promise.resolve()
+    .then(() =>
+      dispatch({
+        payload: trackingPeriod,
+        type: ActionKeys.SAVE_TRACKING_PERIOD
+      })
+    )
+    .then(() => history.push('/'));
+};
