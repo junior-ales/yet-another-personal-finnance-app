@@ -1,4 +1,5 @@
 import { Action, ActionCreator } from 'redux';
+import * as uuid from 'uuid/v4';
 
 import { ActionKeys } from '../../shared/action';
 import { TrackingPeriod } from '../../shared/store';
@@ -23,7 +24,7 @@ export const createTrackingPeriod: ActionCreator<
 > = () => ({
   payload: {
     endDate: new Date(),
-    id: '123',
+    id: uuid(),
     initialBudget: 0,
     plannedSavings: 0,
     startDate: new Date()
