@@ -14,7 +14,9 @@ interface TrackingPeriodProps {
 }
 
 const TrackingPeriod = ({ trackingPeriod }: TrackingPeriodProps) => (
-  <li>Period: {trackingPeriod.startDate}</li>
+  <li>
+    Period: {trackingPeriod.id} {trackingPeriod.startDate.toDateString()}
+  </li>
 );
 
 export class TrackingPeriodList extends React.Component<

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import { TrackingPeriodNewProps } from '.';
 
@@ -19,6 +20,8 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
             Id: <span>{trackingPeriod.id}</span>
           </section>
         )}
+
+        <Link to="/tracking-periods">Home</Link>
       </section>
     );
   }

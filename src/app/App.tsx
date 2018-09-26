@@ -21,11 +21,7 @@ export class App extends React.Component {
             path="/tracking-periods"
             component={TrackingPeriodList}
           />
-          <Route
-            exact={true}
-            path="/tracking-periods/new"
-            component={TrackingPeriodNew}
-          />
+          <Route path="/tracking-periods/new" component={TrackingPeriodNew} />
           <Route component={Oops} />
         </Switch>
       </section>
