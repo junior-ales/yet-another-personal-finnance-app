@@ -5,15 +5,15 @@ import { Dispatch } from 'redux';
 import { ActionsType } from '../../shared/action';
 import { AppState, TrackingPeriod } from '../../shared/store';
 import { createTrackingPeriod } from './action';
-import { newTrackingPeriod } from './selector';
+import { editingTrackingPeriod } from './selector';
 import { TrackingPeriodNew } from './TrackingPeriodNew';
 
 interface StateToProps {
-  trackingPeriod?: TrackingPeriod;
+  trackingPeriod: TrackingPeriod | null;
 }
 
 const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
-  trackingPeriod: newTrackingPeriod(state)
+  trackingPeriod: editingTrackingPeriod(state)
 });
 
 interface DispatchToProps {

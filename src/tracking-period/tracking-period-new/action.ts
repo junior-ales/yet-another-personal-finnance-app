@@ -4,20 +4,15 @@ import * as uuid from 'uuid/v4';
 import { ActionKeys } from '../../shared/action';
 import { TrackingPeriod } from '../../shared/store';
 
-export interface OtherAction extends Action {
-  type: ActionKeys.OTHER_ACTION;
-  payload: {};
+export interface SaveTrackingPeriodAction extends Action {
+  type: ActionKeys.SAVE_TRACKING_PERIOD;
+  payload: TrackingPeriod;
 }
 
 export interface CreateTrackingPeriodAction extends Action {
   type: ActionKeys.CREATE_TRACKING_PERIOD;
   payload: TrackingPeriod;
 }
-
-// const otherAction: ActionCreator<OtherAction> = () => ({
-//   payload: {},
-//   type: ActionKeys.OTHER_ACTION
-// });
 
 export const createTrackingPeriod: ActionCreator<
   CreateTrackingPeriodAction
