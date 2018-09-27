@@ -10,19 +10,29 @@ const EmptyTrackingPeriods = () => (
 
 interface TrackingPeriodProps {
   trackingPeriod: TrackingPeriod;
+  onClick: (trackingPeriodId: string) => void;
 }
 
-const TrackingPeriod = ({ trackingPeriod }: TrackingPeriodProps) => (
-  <li>
-    Period: {trackingPeriod.id} {trackingPeriod.startDate.toDateString()}
-  </li>
-);
+const TrackingPeriod = (props: TrackingPeriodProps) => {
+  const { onClick, trackingPeriod } = props;
+  const handleOnClick = (id: string) => () => onClick(id);
+
+  return (
+    <li onClick={handleOnClick(trackingPeriod.id)}>
+      Period: {trackingPeriod.id}
+    </li>
+  );
+};
 
 export class TrackingPeriodList extends React.Component<
   TrackingPeriodListProps
 > {
   public handleCreateTrackingPeriod = (): void => {
     this.props.onCreateTrackingPeriod(this.props.history);
+  };
+
+  public handleSelectTrackingPeriod = (trackingPeriodId: string): void => {
+    this.props.onSelectTrackingPeriod(trackingPeriodId, this.props.history);
   };
 
   public render() {
@@ -36,7 +46,11 @@ export class TrackingPeriodList extends React.Component<
           ) : (
             <ul>
               {trackingPeriods.map(t => (
-                <TrackingPeriod key={t.id} trackingPeriod={t} />
+                <TrackingPeriod
+                  key={t.id}
+                  trackingPeriod={t}
+                  onClick={this.handleSelectTrackingPeriod}
+                />
               ))}
             </ul>
           )}

@@ -1,15 +1,13 @@
 import { combineReducers, Reducer } from 'redux';
 
+import { selectedReducer } from '../../tracking-period/tracking-period-list/reducer';
 import { ActionKeys, ActionsType } from '../action';
 import { AppState } from '../store';
 
 type ByIdState = AppState['trackingPeriods']['byId'];
-type AllIdState = AppState['trackingPeriods']['allId'];
-type EditTrackPeriod = AppState['editing']['trackingPeriod'];
-
-const trackingPeriodsById: Reducer<ByIdState> = (
+const trackingPeriodsById: Reducer<ByIdState, ActionsType> = (
   state = {},
-  action: ActionsType
+  action
 ) => {
   if (action.type === ActionKeys.SAVE_TRACKING_PERIOD) {
     return { ...state, [action.payload.id]: action.payload };
@@ -18,9 +16,10 @@ const trackingPeriodsById: Reducer<ByIdState> = (
   return state;
 };
 
-const trackingPeriodsAllId: Reducer<AllIdState> = (
+type AllIdState = AppState['trackingPeriods']['allId'];
+const trackingPeriodsAllId: Reducer<AllIdState, ActionsType> = (
   state = [],
-  action: ActionsType
+  action
 ) => {
   if (action.type === ActionKeys.SAVE_TRACKING_PERIOD) {
     return [...state, action.payload.id];
@@ -29,9 +28,10 @@ const trackingPeriodsAllId: Reducer<AllIdState> = (
   return state;
 };
 
-const editTrackPeriodReducer: Reducer<EditTrackPeriod> = (
+type EditTrackingPeriod = AppState['editing']['trackingPeriod'];
+const editTrackPeriodReducer: Reducer<EditTrackingPeriod, ActionsType> = (
   state = null,
-  action: ActionsType
+  action
 ) => {
   switch (action.type) {
     case ActionKeys.CREATE_TRACKING_PERIOD:
@@ -45,12 +45,13 @@ const editTrackPeriodReducer: Reducer<EditTrackPeriod> = (
   }
 };
 
-const trackingPeriodsReducer = combineReducers({
+const trackingPeriodsReducer = combineReducers<AppState['trackingPeriods']>({
   allId: trackingPeriodsAllId,
-  byId: trackingPeriodsById
+  byId: trackingPeriodsById,
+  selected: selectedReducer
 });
 
-const editingReducer = combineReducers({
+const editingReducer = combineReducers<AppState['editing']>({
   trackingPeriod: editTrackPeriodReducer
 });
 

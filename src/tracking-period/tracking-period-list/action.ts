@@ -2,7 +2,7 @@ import { History } from 'history';
 import { Action, Dispatch } from 'redux';
 import * as uuid from 'uuid/v4';
 
-import { ActionKeys, ActionsType } from '../../shared/action';
+import { ActionKeys } from '../../shared/action';
 import { TrackingPeriod } from '../../shared/store';
 
 export interface CreateTrackingPeriodAction extends Action {
@@ -11,7 +11,7 @@ export interface CreateTrackingPeriodAction extends Action {
 }
 
 export const createTrackingPeriod = (history: History) => async (
-  dispatch: Dispatch<ActionsType>
+  dispatch: Dispatch<CreateTrackingPeriodAction>
 ) => {
   Promise.resolve()
     .then(() =>
@@ -27,4 +27,23 @@ export const createTrackingPeriod = (history: History) => async (
       })
     )
     .then(() => history.push('/tracking-periods/new'));
+};
+
+export interface SelectTrackingPeriodAction extends Action {
+  type: ActionKeys.SELECT_TRACKING_PERIOD;
+  payload: string;
+}
+
+export const selectTrackingPeriod = (
+  trackingPeriodId: string,
+  history: History
+) => async (dispatch: Dispatch<SelectTrackingPeriodAction>) => {
+  Promise.resolve()
+    .then(() =>
+      dispatch({
+        payload: trackingPeriodId,
+        type: ActionKeys.SELECT_TRACKING_PERIOD
+      })
+    )
+    .then(() => history.push(`/tracking-periods/${trackingPeriodId}`));
 };

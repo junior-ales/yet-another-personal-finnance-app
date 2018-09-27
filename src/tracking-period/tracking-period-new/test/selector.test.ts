@@ -7,7 +7,7 @@ describe('Tracking Period New Selector', () => {
 
   const initialState: AppState = {
     editing: { trackingPeriod: null },
-    trackingPeriods: { allId: [], byId: {} }
+    trackingPeriods: { allId: [], byId: {}, selected: null }
   };
 
   const editingTrackingPeriodState: AppState = {
@@ -20,7 +20,7 @@ describe('Tracking Period New Selector', () => {
         startDate
       }
     },
-    trackingPeriods: { allId: [], byId: {} }
+    trackingPeriods: { allId: [], byId: {}, selected: null }
   };
 
   it('should get null editing tracking period on initial state', () => {
