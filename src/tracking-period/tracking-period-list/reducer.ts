@@ -8,8 +8,14 @@ export const selectedReducer: Reducer<SelectedTrackingPeriod, ActionsType> = (
   state = null,
   action
 ) => {
-  if (action.type === ActionKeys.SELECT_TRACKING_PERIOD) {
-    return action.payload;
+  switch (action.type) {
+    case ActionKeys.SAVE_TRACKING_PERIOD:
+      return action.payload.id;
+
+    case ActionKeys.SELECT_TRACKING_PERIOD:
+      return action.payload;
+
+    default:
+      return state;
   }
-  return state;
 };

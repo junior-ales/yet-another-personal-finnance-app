@@ -21,5 +21,7 @@ export const saveTrackingPeriod = (
         type: ActionKeys.SAVE_TRACKING_PERIOD
       })
     )
-    .then(() => history.push('/'));
+    .then(() =>
+      history.push(`/tracking-period/${trackingPeriod.id}/transaction`)
+    );
 };
