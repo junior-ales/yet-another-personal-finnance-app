@@ -1,12 +1,18 @@
 import * as R from 'ramda';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 import { TrackingPeriodListProps } from '.';
+import { ButtonLink } from '../../shared/components/ButtonLink';
 import { TrackingPeriod } from '../../shared/store';
 
+import './trackingPeriodList.css';
+
 const EmptyTrackingPeriods = () => (
-  <h2>Comece a organizar sua vida financeira clicando em Inicio</h2>
+  <section className="EmptyTrackingPeriods">
+    <p className="EmptyTrackingPeriods-content">
+      Comece a organizar sua vida financeira criando um periodo
+    </p>
+  </section>
 );
 
 interface TrackingPeriodProps {
@@ -37,6 +43,10 @@ export class TrackingPeriodList extends React.Component<
 
     return (
       <section>
+        <header className="TrackingPeriodsHeader">
+          <h1 className="TrackingPeriodsHeader-content">Periodos</h1>
+        </header>
+
         <section>
           {R.isEmpty(trackingPeriods) ? (
             <EmptyTrackingPeriods />
@@ -52,7 +62,7 @@ export class TrackingPeriodList extends React.Component<
             </ul>
           )}
 
-          <Link to="/tracking-period/new">Inicio</Link>
+          <ButtonLink to="/tracking-period/new" label="Criar Periodo" />
         </section>
       </section>
     );

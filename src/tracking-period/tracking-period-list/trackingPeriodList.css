@@ -1,0 +1,21 @@
+.EmptyTrackingPeriods {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70%;
+  transform: translate(-50%, -50%);
+}
+
+.EmptyTrackingPeriods-content {
+  color: #9e9e9e;
+  font-size: 1.75em;
+  text-align: center;
+}
+
+.TrackingPeriodsHeader {
+  padding: 1em;
+}
+
+.TrackingPeriodsHeader-content {
+  margin: 0;
+}
