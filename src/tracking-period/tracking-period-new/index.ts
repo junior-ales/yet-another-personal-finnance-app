@@ -1,21 +1,12 @@
 import { History } from 'history';
-import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
+import { connect, MapDispatchToProps } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ThunkDispatch } from 'redux-thunk';
 
 import { ActionsType } from '../../shared/action';
-import { AppState, TrackingPeriod } from '../../shared/store';
+import { TrackingPeriod } from '../../shared/store';
 import { saveTrackingPeriod } from './action';
-import { editingTrackingPeriod } from './selector';
 import { TrackingPeriodNew } from './TrackingPeriodNew';
-
-interface StateToProps {
-  trackingPeriod: TrackingPeriod | null;
-}
-
-const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
-  trackingPeriod: editingTrackingPeriod(state)
-});
 
 interface DispatchToProps {
   onSaveTrackingPeriod: (
@@ -31,13 +22,11 @@ const mapDispatchToProps: MapDispatchToProps<DispatchToProps, {}> = (
     dispatch(saveTrackingPeriod(trackingPeriod, history))
 });
 
-export type TrackingPeriodNewProps = StateToProps &
-  DispatchToProps &
-  RouteComponentProps;
+export type TrackingPeriodNewProps = DispatchToProps & RouteComponentProps;
 
 export default (withRouter as any)(
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
   )(TrackingPeriodNew)
 );

@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import { ActionsType } from '../../shared/action';
 import { AppState, TrackingPeriod } from '../../shared/store';
-import { createTrackingPeriod, selectTrackingPeriod } from './action';
+import { selectTrackingPeriod } from './action';
 import { allTrackingPeriods } from './selector';
 import { TrackingPeriodList } from './TrackingPeriodList';
 
@@ -14,7 +14,6 @@ interface StateToProps {
 }
 
 interface DispatchToProps {
-  onCreateTrackingPeriod: (history: History) => void;
   onSelectTrackingPeriod: (trackingPeriodId: string, history: History) => void;
 }
 
@@ -29,8 +28,6 @@ const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
 const mapDispatchToProps: MapDispatchToProps<DispatchToProps, {}> = (
   dispatch: ThunkDispatch<{}, {}, ActionsType>
 ) => ({
-  onCreateTrackingPeriod: (history: History) =>
-    dispatch(createTrackingPeriod(history)),
   onSelectTrackingPeriod: (trackingPeriodId: string, history: History) =>
     dispatch(selectTrackingPeriod(trackingPeriodId, history))
 });

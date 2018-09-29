@@ -6,12 +6,10 @@ describe('Tracking Period View Selector', () => {
   const startDate = new Date();
 
   const stateWithoutSelection: AppState = {
-    editing: { trackingPeriod: null },
     trackingPeriods: { allId: [], byId: {}, selected: null }
   };
 
   const stateWithTPSelected: AppState = {
-    editing: { trackingPeriod: null },
     trackingPeriods: {
       allId: ['123'],
       byId: {

@@ -24,7 +24,7 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
   };
 
   public render() {
-    const trackingPeriod = this.props.trackingPeriod || newTrackingPeriod();
+    const trackingPeriod = newTrackingPeriod();
 
     return (
       <section>
