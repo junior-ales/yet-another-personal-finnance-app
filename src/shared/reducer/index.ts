@@ -8,7 +8,8 @@ import {
 import { selectedTransactionReducer } from '../../transaction/transaction-list/reducer';
 import {
   transactionsAllId,
-  transactionsById
+  transactionsById,
+  transactionsByTrackingPeriod
 } from '../../transaction/transaction-new/reducer';
 import { ActionsType } from '../action';
 import { AppState } from '../store';
@@ -22,6 +23,7 @@ const trackingPeriodsReducer = combineReducers<AppState['trackingPeriods']>({
 const transactionsReducer = combineReducers<AppState['transactions']>({
   allId: transactionsAllId,
   byId: transactionsById,
+  byTrackingPeriod: transactionsByTrackingPeriod,
   selected: selectedTransactionReducer
 });
 

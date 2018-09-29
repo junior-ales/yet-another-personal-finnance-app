@@ -1,10 +1,12 @@
 import { Moment } from 'moment';
 
+type TransactionId = string;
+type TrackingPeriodId = string;
 type TransactionCategories = 'transport' | 'food' | 'other';
 
 export interface Transaction {
-  id: string;
-  trackingPeriodId: string;
+  id: TransactionId;
+  trackingPeriodId: TrackingPeriodId;
   type: 'credit' | 'debit';
   value: number;
   date: Moment;
@@ -13,7 +15,7 @@ export interface Transaction {
 }
 
 export interface TrackingPeriod {
-  id: string;
+  id: TrackingPeriodId;
   startDate: Moment;
   endDate: Moment;
   initialBudget: number;
@@ -25,25 +27,22 @@ export interface TrackingPeriod {
 // }
 
 export interface AppState {
-  transactions: {
-    allId: string[];
-    byId: { [prop: string]: Transaction };
-    selected: string | null;
-  };
   trackingPeriods: {
-    allId: string[];
-    byId: { [prop: string]: TrackingPeriod };
-    selected: string | null;
+    allId: TrackingPeriodId[];
+    byId: { [trackingPeriodId: string]: TrackingPeriod };
+    selected: TrackingPeriodId | null;
   };
-  // transactions: {
-  //   byId: { [prop: string]: Transaction };
-  //   allId: string[];
-  // };
+  transactions: {
+    allId: TransactionId[];
+    byId: { [transactionId: string]: Transaction };
+    byTrackingPeriod: { [trackingPeriodId: string]: TransactionId[] };
+    selected: TransactionId | null;
+  };
   // user: User;
 }
 
 export const initialState: AppState = {
   trackingPeriods: { allId: [], byId: {}, selected: null },
-  transactions: { allId: [], byId: {}, selected: null }
+  transactions: { allId: [], byId: {}, byTrackingPeriod: {}, selected: null }
   // user: { id: 'user1' }
 };
