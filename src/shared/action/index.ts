@@ -1,6 +1,7 @@
 import { SelectTrackingPeriodAction } from '../../tracking-period/tracking-period-list/action';
 import { SaveTrackingPeriodAction } from '../../tracking-period/tracking-period-new/action';
 import { SelectTransactionAction } from '../../transaction/transaction-list/action';
+import { SaveTransactionAction } from '../../transaction/transaction-new/action';
 
 export enum ActionKeys {
   SELECT_TRANSACTION = 'SELECT_TRANSACTION',
@@ -11,5 +12,6 @@ export enum ActionKeys {
 
 export type ActionsType =
   | SaveTrackingPeriodAction
+  | SaveTransactionAction
   | SelectTrackingPeriodAction
   | SelectTransactionAction;

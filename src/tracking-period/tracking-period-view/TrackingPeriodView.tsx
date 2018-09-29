@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import { TrackingPeriodViewProps } from '.';
 
@@ -15,6 +15,7 @@ export class TrackingPeriodView extends React.Component<
       <section>
         <h2>TP Details</h2>
         {JSON.stringify(trackingPeriod)}
+        <Link to="/transaction/new">New Transaction</Link>
       </section>
     ) : (
       <Route component={Oops} />

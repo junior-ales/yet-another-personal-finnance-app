@@ -26,8 +26,8 @@ export interface TrackingPeriod {
 
 export interface AppState {
   transactions: {
-    // allId: string[];
-    // byId: { [prop: string]: Transaction };
+    allId: string[];
+    byId: { [prop: string]: Transaction };
     selected: string | null;
   };
   trackingPeriods: {
@@ -44,7 +44,6 @@ export interface AppState {
 
 export const initialState: AppState = {
   trackingPeriods: { allId: [], byId: {}, selected: null },
-  // transactions: { allId: [], byId: {}, selected: null }
-  transactions: { selected: null }
+  transactions: { allId: [], byId: {}, selected: null }
   // user: { id: 'user1' }
 };
