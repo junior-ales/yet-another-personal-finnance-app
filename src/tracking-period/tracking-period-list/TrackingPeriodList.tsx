@@ -52,7 +52,7 @@ export class TrackingPeriodList extends React.Component<
             </ul>
           )}
 
-          <Link to="/tracking-periods/new">Inicio</Link>
+          <Link to="/tracking-period/new">Inicio</Link>
         </section>
       </section>
     );

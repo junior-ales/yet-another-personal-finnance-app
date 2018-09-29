@@ -15,30 +15,26 @@ export class App extends React.Component {
         <header>
           <h1>Financeiro</h1>
         </header>
-        <Link to="/tracking-periods">Home</Link>
+        <Link to="/tracking-period">Home</Link>
 
         <Switch>
-          <Redirect exact={true} from="/" to="/tracking-periods" />
+          <Redirect exact={true} from="/" to="/tracking-period" />
           <Route
             exact={true}
-            path="/tracking-periods"
+            path="/tracking-period"
             component={TrackingPeriodList}
           />
           <Route
             exact={true}
-            path="/tracking-periods/new"
+            path="/tracking-period/new"
             component={TrackingPeriodNew}
           />
           <Route
             exact={true}
-            path="/tracking-periods/:id"
+            path="/tracking-period/:id"
             component={TrackingPeriodView}
           />
-          <Route
-            exact={true}
-            path="/transactions"
-            component={TransactionList}
-          />
+          <Route exact={true} path="/transaction" component={TransactionList} />
           <Route component={Oops} />
         </Switch>
       </section>

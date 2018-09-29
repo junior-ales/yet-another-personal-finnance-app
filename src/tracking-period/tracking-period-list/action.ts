@@ -19,5 +19,5 @@ export const selectTrackingPeriod = (
         type: ActionKeys.SELECT_TRACKING_PERIOD
       })
     )
-    .then(() => history.push(`/tracking-periods/${trackingPeriodId}`));
+    .then(() => history.push(`/tracking-period/${trackingPeriodId}`));
 };
