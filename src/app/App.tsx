@@ -6,6 +6,7 @@ import TrackingPeriodNew from '../tracking-period/tracking-period-new';
 import TrackingPeriodView from '../tracking-period/tracking-period-view';
 import TransactionList from '../transaction/transaction-list';
 import TransactionNew from '../transaction/transaction-new';
+import TransactionView from '../transaction/transaction-view';
 
 const Oops = () => <h2>Ooops, something went wrong</h2>;
 
@@ -44,6 +45,11 @@ export class App extends React.Component {
             exact={true}
             path="/tracking-period/:trackingPeriodId/transaction/new"
             component={TransactionNew}
+          />
+          <Route
+            exact={true}
+            path="/tracking-period/:trackingPeriodId/transaction/:transactionId"
+            component={TransactionView}
           />
           <Route component={Oops} />
         </Switch>
