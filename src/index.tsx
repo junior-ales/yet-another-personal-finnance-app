@@ -3,6 +3,9 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
 import { App } from './app/App';
 import registerServiceWorker from './registerServiceWorker';
 import { configureStore } from './shared/store/configureStore';

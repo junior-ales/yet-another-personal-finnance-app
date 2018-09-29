@@ -1,8 +1,10 @@
-import { Field, FieldProps, Form, Formik, FormikActions } from 'formik';
+import { Form, Formik, FormikActions } from 'formik';
 import * as React from 'react';
 import * as uuid from 'uuid';
 
 import { TrackingPeriodNewProps } from '.';
+import { DatePickerField } from '../../shared/components/datepicker-field';
+import { InputField } from '../../shared/components/input-field';
 import { TrackingPeriod } from '../../shared/store';
 
 const newTrackingPeriod = (): TrackingPeriod => ({
@@ -14,6 +16,14 @@ const newTrackingPeriod = (): TrackingPeriod => ({
 });
 
 export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
+  private initialValues: TrackingPeriod;
+
+  constructor(props: TrackingPeriodNewProps) {
+    super(props);
+
+    this.initialValues = newTrackingPeriod();
+  }
+
   public handleOnSave = (
     trackingPeriod: TrackingPeriod,
     actions: FormikActions<TrackingPeriod>
@@ -24,38 +34,24 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
   };
 
   public render() {
-    const trackingPeriod = newTrackingPeriod();
-
     return (
       <section>
         <header>New Tracking Period</header>
-        <Formik initialValues={trackingPeriod} onSubmit={this.handleOnSave}>
+        <Formik initialValues={this.initialValues} onSubmit={this.handleOnSave}>
           {() => (
             <Form>
-              <Field name="initialBudget">
-                {(props: FieldProps<TrackingPeriod>) => (
-                  <div>
-                    <label htmlFor={props.field.name}>Initial Budget</label>
-                    <input
-                      type="number"
-                      id={props.field.name}
-                      {...props.field}
-                    />
-                  </div>
-                )}
-              </Field>
-              <Field name="plannedSavings">
-                {(props: FieldProps<TrackingPeriod>) => (
-                  <div>
-                    <label htmlFor={props.field.name}>Planned Savings</label>
-                    <input
-                      type="number"
-                      id={props.field.name}
-                      {...props.field}
-                    />
-                  </div>
-                )}
-              </Field>
+              <InputField
+                type="number"
+                name="initialBudget"
+                label="Initial Budget"
+              />
+              <InputField
+                type="number"
+                name="plannedSavings"
+                label="PlannedSavings"
+              />
+              <DatePickerField name="startDate" label="Start Date" />
+              <DatePickerField name="endDate" label="End Date" />
               <button type="submit">Save</button>
             </Form>
           )}
