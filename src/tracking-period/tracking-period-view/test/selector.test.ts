@@ -1,9 +1,10 @@
+import * as moment from 'moment';
 import { AppState, TrackingPeriod } from '../../../shared/store';
 import { selectedTrackingPeriod } from '../selector';
 
 describe('Tracking Period View Selector', () => {
-  const endDate = new Date();
-  const startDate = new Date();
+  const endDate = moment();
+  const startDate = moment();
 
   const stateWithoutSelection: AppState = {
     trackingPeriods: { allId: [], byId: {}, selected: null }

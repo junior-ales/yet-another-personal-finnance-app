@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 // interface Transaction {
 //   id: string;
 //   trackingPeriodId: string;
@@ -10,8 +12,8 @@
 
 export interface TrackingPeriod {
   id: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: Moment;
+  endDate: Moment;
   initialBudget: number;
   plannedSavings: number;
 }

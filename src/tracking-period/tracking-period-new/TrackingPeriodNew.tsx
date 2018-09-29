@@ -1,4 +1,5 @@
 import { Form, Formik, FormikActions } from 'formik';
+import * as moment from 'moment';
 import * as React from 'react';
 import * as uuid from 'uuid';
 
@@ -8,11 +9,11 @@ import { InputField } from '../../shared/components/input-field';
 import { TrackingPeriod } from '../../shared/store';
 
 const newTrackingPeriod = (): TrackingPeriod => ({
-  endDate: new Date(),
+  endDate: moment(),
   id: uuid(),
   initialBudget: 0,
   plannedSavings: 0,
-  startDate: new Date()
+  startDate: moment()
 });
 
 export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
