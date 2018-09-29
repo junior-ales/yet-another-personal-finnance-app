@@ -27,7 +27,7 @@ export class TransactionList extends React.Component<TransactionListProps> {
   };
 
   public render() {
-    const { transactions } = this.props;
+    const { match, transactions } = this.props;
 
     return (
       <section>
@@ -46,7 +46,7 @@ export class TransactionList extends React.Component<TransactionListProps> {
             </ul>
           )}
 
-          <Link to="/transaction/new">New Transaction</Link>
+          <Link to={match.url + '/new'}>New Transaction</Link>
         </section>
       </section>
     );

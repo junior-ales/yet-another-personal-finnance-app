@@ -21,5 +21,9 @@ export const saveTransaction = (
         type: ActionKeys.SAVE_TRANSACTION
       })
     )
-    .then(() => history.push('/transaction'));
+    .then(() =>
+      history.push(
+        `/tracking-period/${transaction.trackingPeriodId}/transaction`
+      )
+    );
 };

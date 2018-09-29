@@ -32,13 +32,17 @@ export class App extends React.Component {
           />
           <Route
             exact={true}
-            path="/tracking-period/:id"
+            path="/tracking-period/:trackingPeriodId"
             component={TrackingPeriodView}
           />
-          <Route exact={true} path="/transaction" component={TransactionList} />
           <Route
             exact={true}
-            path="/transaction/new"
+            path="/tracking-period/:trackingPeriodId/transaction"
+            component={TransactionList}
+          />
+          <Route
+            exact={true}
+            path="/tracking-period/:trackingPeriodId/transaction/new"
             component={TransactionNew}
           />
           <Route component={Oops} />

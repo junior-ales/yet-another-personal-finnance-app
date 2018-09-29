@@ -9,13 +9,15 @@ export class TrackingPeriodView extends React.Component<
   TrackingPeriodViewProps
 > {
   public render() {
-    const { trackingPeriod } = this.props;
+    const { match, trackingPeriod } = this.props;
 
     return trackingPeriod ? (
       <section>
         <h2>TP Details</h2>
         {JSON.stringify(trackingPeriod)}
-        <Link to="/transaction/new">New Transaction</Link>
+        <div>
+          <Link to={match.url + '/transaction/new'}>New Transaction</Link>
+        </div>
       </section>
     ) : (
       <Route component={Oops} />
