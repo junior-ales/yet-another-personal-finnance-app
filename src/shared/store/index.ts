@@ -1,14 +1,16 @@
 import { Moment } from 'moment';
 
-// interface Transaction {
-//   id: string;
-//   trackingPeriodId: string;
-//   type: 'credit' | 'debit';
-//   value: number;
-//   date: Date;
-//   category: 'transport' | 'food' | 'other';
-//   description: string;
-// }
+type TransactionCategories = 'transport' | 'food' | 'other';
+
+export interface Transaction {
+  id: string;
+  trackingPeriodId: string;
+  type: 'credit' | 'debit';
+  value: number;
+  date: Moment;
+  category: TransactionCategories;
+  description: string;
+}
 
 export interface TrackingPeriod {
   id: string;
@@ -23,6 +25,11 @@ export interface TrackingPeriod {
 // }
 
 export interface AppState {
+  transactions: {
+    // allId: string[];
+    // byId: { [prop: string]: Transaction };
+    selected: string | null;
+  };
   trackingPeriods: {
     allId: string[];
     byId: { [prop: string]: TrackingPeriod };
@@ -36,7 +43,8 @@ export interface AppState {
 }
 
 export const initialState: AppState = {
-  trackingPeriods: { allId: [], byId: {}, selected: null }
-  // transactions: { allId: [], byId: {} },
+  trackingPeriods: { allId: [], byId: {}, selected: null },
+  // transactions: { allId: [], byId: {}, selected: null }
+  transactions: { selected: null }
   // user: { id: 'user1' }
 };

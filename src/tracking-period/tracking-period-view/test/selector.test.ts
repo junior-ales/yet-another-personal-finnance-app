@@ -7,7 +7,8 @@ describe('Tracking Period View Selector', () => {
   const startDate = moment();
 
   const stateWithoutSelection: AppState = {
-    trackingPeriods: { allId: [], byId: {}, selected: null }
+    trackingPeriods: { allId: [], byId: {}, selected: null },
+    transactions: { selected: null }
   };
 
   const stateWithTPSelected: AppState = {
@@ -23,7 +24,8 @@ describe('Tracking Period View Selector', () => {
         }
       },
       selected: '123'
-    }
+    },
+    transactions: { selected: null }
   };
 
   it('should get a selected tracking period', () => {
