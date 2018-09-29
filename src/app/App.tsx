@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import TrackingPeriodList from '../tracking-period/tracking-period-list';
 import TrackingPeriodNew from '../tracking-period/tracking-period-new';
@@ -8,16 +8,15 @@ import TransactionList from '../transaction/transaction-list';
 import TransactionNew from '../transaction/transaction-new';
 import TransactionView from '../transaction/transaction-view';
 
+import { Header } from './header/Header';
+
 const Oops = () => <h2>Ooops, something went wrong</h2>;
 
 export class App extends React.Component {
   public render() {
     return (
       <section>
-        <header>
-          <h1>Financeiro</h1>
-        </header>
-        <Link to="/tracking-period">Home</Link>
+        <Header />
 
         <Switch>
           <Redirect exact={true} from="/" to="/tracking-period" />

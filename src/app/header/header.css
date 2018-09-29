@@ -1,0 +1,12 @@
+.MainHeader {
+  background-color: #212121;
+  margin: 0;
+  padding: 1em;
+  text-align: left;
+}
+
+.MainHeader-link,
+.MainHeader-link:visited {
+  color: #fafafa;
+  text-decoration: none;
+}
