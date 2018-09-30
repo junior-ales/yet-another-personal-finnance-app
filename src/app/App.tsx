@@ -7,17 +7,19 @@ import TrackingPeriodView from '../tracking-period/tracking-period-view';
 import TransactionNew from '../transaction/transaction-new';
 import TransactionView from '../transaction/transaction-view';
 
+import { InternalServerError } from '../shared/components/InternalServerError';
 import { RouteNotFound } from '../shared/components/RouteNotFound';
+import { ErrorBoundary } from './ErrorBoundary';
 import { MainHeader } from './MainHeader';
 
 export class App extends React.Component {
   public render() {
     return (
-      <section>
+      <ErrorBoundary>
         <MainHeader />
-
         <Switch>
           <Redirect exact={true} from="/" to="/tracking-period" />
+          <Route path="/error" component={InternalServerError} />
           <Route
             exact={true}
             path="/tracking-period"
@@ -45,7 +47,7 @@ export class App extends React.Component {
           />
           <Route component={RouteNotFound} />
         </Switch>
-      </section>
+      </ErrorBoundary>
     );
   }
 }
