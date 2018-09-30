@@ -1,0 +1,18 @@
+.InputField {
+  margin-bottom: 1.5em;
+}
+
+.InputField-componentBox {
+  margin-bottom: 0.5em;
+}
+
+.InputField-label,
+.InputField-input {
+  font-size: 1.125em;
+  width: 100%;
+}
+
+.InputField-input {
+  padding: 0.5em;
+  border: 1px solid #e0e0e0;
+}

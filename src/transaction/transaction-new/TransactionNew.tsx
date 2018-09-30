@@ -5,7 +5,7 @@ import * as uuid from 'uuid';
 
 import { TransactionNewProps } from '.';
 import { DatePickerField } from '../../shared/components/datepicker-field';
-import { InputField } from '../../shared/components/input-field';
+import { InputField } from '../../shared/components/InputField';
 import { Transaction } from '../../shared/store';
 
 const newTransaction = (trackingPeriodId: string): Transaction => ({

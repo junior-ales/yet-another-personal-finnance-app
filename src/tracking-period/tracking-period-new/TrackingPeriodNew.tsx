@@ -4,9 +4,13 @@ import * as React from 'react';
 import * as uuid from 'uuid';
 
 import { TrackingPeriodNewProps } from '.';
+import { Button } from '../../shared/components/Button';
 import { DatePickerField } from '../../shared/components/datepicker-field';
-import { InputField } from '../../shared/components/input-field';
+import { InputField } from '../../shared/components/InputField';
+import { PageHeader } from '../../shared/components/PageHeader';
 import { TrackingPeriod } from '../../shared/store';
+
+import './trackingPeriodNew.css';
 
 const newTrackingPeriod = (): TrackingPeriod => ({
   endDate: moment(),
@@ -37,23 +41,27 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
   public render() {
     return (
       <section>
-        <header>New Tracking Period</header>
+        <PageHeader title="Novo Periodo" />
+
         <Formik initialValues={this.initialValues} onSubmit={this.handleOnSave}>
           {() => (
-            <Form>
+            <Form className="NewTrackingPeriodForm">
               <InputField
                 type="number"
                 name="initialBudget"
-                label="Initial Budget"
+                label="Orcamento Inicial"
               />
               <InputField
                 type="number"
                 name="plannedSavings"
-                label="PlannedSavings"
+                label="Meta de Poupanca"
               />
-              <DatePickerField name="startDate" label="Start Date" />
-              <DatePickerField name="endDate" label="End Date" />
-              <button type="submit">Save</button>
+              <DatePickerField name="startDate" label="Data deste Orcamento" />
+              <DatePickerField
+                name="endDate"
+                label="Data do Proximo Orcamento"
+              />
+              <Button type="submit" value="Salvar" />
             </Form>
           )}
         </Formik>
