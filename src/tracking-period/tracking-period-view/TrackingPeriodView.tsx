@@ -39,7 +39,7 @@ export class TrackingPeriodView extends React.Component<
 
         <ButtonLink
           to={match.url + '/transaction/new'}
-          label="Nova Transacao"
+          label="Criar Transacao"
         />
       </section>
     ) : (

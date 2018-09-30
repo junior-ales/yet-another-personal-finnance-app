@@ -4,9 +4,18 @@ import * as React from 'react';
 import * as uuid from 'uuid';
 
 import { TransactionNewProps } from '.';
+import { Button } from '../../shared/components/Button';
 import { DatePickerField } from '../../shared/components/DatePickerField';
+import { InlineSelectionField } from '../../shared/components/InlineSelectionField';
 import { InputField } from '../../shared/components/InputField';
-import { Transaction } from '../../shared/store';
+import { PageHeader } from '../../shared/components/PageHeader';
+import {
+  Transaction,
+  TransactionCategories,
+  TransactionTypes
+} from '../../shared/store';
+
+import './transactionNew.css';
 
 const newTransaction = (trackingPeriodId: string): Transaction => ({
   category: 'other',
@@ -17,6 +26,24 @@ const newTransaction = (trackingPeriodId: string): Transaction => ({
   type: 'debit',
   value: 0
 });
+
+const transactionTypeChoices: Array<{
+  label: string;
+  value: TransactionTypes;
+}> = [
+  { label: 'Credito', value: 'credit' },
+  { label: 'Debito', value: 'debit' }
+];
+
+const transactionCategoryChoices: Array<{
+  label: string;
+  value: TransactionCategories;
+}> = [
+  { label: 'gasto fixo', value: 'fixed-expense' },
+  { label: 'transporte', value: 'transport' },
+  { label: 'comida', value: 'food' },
+  { label: 'outros', value: 'other' }
+];
 
 export class TransactionNew extends React.Component<TransactionNewProps> {
   private initialValues: Transaction;
@@ -39,16 +66,28 @@ export class TransactionNew extends React.Component<TransactionNewProps> {
   public render() {
     return (
       <section>
-        <header>New Transaction</header>
+        <PageHeader title="Nova Transacao" />
         <Formik initialValues={this.initialValues} onSubmit={this.handleOnSave}>
           {() => (
-            <Form>
-              <InputField type="text" name="description" label="Description" />
-              <InputField type="text" name="category" label="Category" />
-              <InputField type="text" name="type" label="Type" />
-              <InputField type="number" name="value" label="Value" />
-              <DatePickerField name="date" label="Date" />
-              <button type="submit">Save</button>
+            <Form className="NewTransactionForm">
+              <InputField type="text" name="description" label="Descricao" />
+              <InlineSelectionField
+                name="category"
+                label="Categoria"
+                choices={transactionCategoryChoices}
+              />
+              <InlineSelectionField
+                name="type"
+                label="Tipo"
+                choices={transactionTypeChoices}
+              />
+              <InputField type="number" name="value" label="Valor" />
+              <DatePickerField
+                name="date"
+                initialDate={moment()}
+                label="Data"
+              />
+              <Button type="submit" value="Salvar" />
             </Form>
           )}
         </Formik>

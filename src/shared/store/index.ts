@@ -2,12 +2,17 @@ import { Moment } from 'moment';
 
 type TransactionId = string;
 type TrackingPeriodId = string;
-type TransactionCategories = 'transport' | 'food' | 'other';
+export type TransactionTypes = 'credit' | 'debit';
+export type TransactionCategories =
+  | 'transport'
+  | 'food'
+  | 'fixed-expense'
+  | 'other';
 
 export interface Transaction {
   id: TransactionId;
   trackingPeriodId: TrackingPeriodId;
-  type: 'credit' | 'debit';
+  type: TransactionTypes;
   value: number;
   date: Moment;
   category: TransactionCategories;

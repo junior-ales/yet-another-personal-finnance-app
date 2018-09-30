@@ -1,0 +1,25 @@
+.InlineSelectionField {
+  margin-bottom: 1.5em;
+}
+
+.InlineSelectionField-componentBox {
+  margin-bottom: 0.5em;
+}
+
+.InlineSelectionField-button {
+  background: none;
+  background-color: #fafafa;
+  color: #616161;
+  border: 1px solid #616161;
+  padding: 0.5em 0.75em;
+  outline: none;
+  text-transform: capitalize;
+}
+
+.InlineSelectionField-button + .InlineSelectionField-button {
+  margin-left: 0.5em;
+}
+
+.InlineSelectionField-button.is-active {
+  background-color: #bdbdbd;
+}
