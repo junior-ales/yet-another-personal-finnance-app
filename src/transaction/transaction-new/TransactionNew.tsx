@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as uuid from 'uuid';
 
 import { TransactionNewProps } from '.';
-import { DatePickerField } from '../../shared/components/datepicker-field';
+import { DatePickerField } from '../../shared/components/DatePickerField';
 import { InputField } from '../../shared/components/InputField';
 import { Transaction } from '../../shared/store';
 

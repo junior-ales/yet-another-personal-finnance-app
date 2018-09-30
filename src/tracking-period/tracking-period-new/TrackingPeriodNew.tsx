@@ -5,7 +5,7 @@ import * as uuid from 'uuid';
 
 import { TrackingPeriodNewProps } from '.';
 import { Button } from '../../shared/components/Button';
-import { DatePickerField } from '../../shared/components/datepicker-field';
+import { DatePickerField } from '../../shared/components/DatePickerField';
 import { InputField } from '../../shared/components/InputField';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { TrackingPeriod } from '../../shared/store';
