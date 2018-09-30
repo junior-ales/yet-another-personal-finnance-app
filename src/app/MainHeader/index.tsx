@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import './header.css';
+import './mainHeader.css';
 
-export class Header extends React.Component {
+export class MainHeader extends React.Component {
   public render() {
     return (
       <header>

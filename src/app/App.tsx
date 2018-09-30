@@ -8,13 +8,13 @@ import TransactionNew from '../transaction/transaction-new';
 import TransactionView from '../transaction/transaction-view';
 
 import { RouteNotFound } from '../shared/components/RouteNotFound';
-import { Header } from './header/Header';
+import { MainHeader } from './MainHeader';
 
 export class App extends React.Component {
   public render() {
     return (
       <section>
-        <Header />
+        <MainHeader />
 
         <Switch>
           <Redirect exact={true} from="/" to="/tracking-period" />
