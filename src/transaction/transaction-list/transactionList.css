@@ -1,0 +1,85 @@
+.TransactionList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.TransactionList-title {
+  font-size: 1.25em;
+  padding: 1rem;
+  padding-top: 0;
+  margin: 0;
+}
+
+.Transaction {
+  background-color: #fafafa;
+  padding: 0.5em 1em 1em 1em;
+  line-height: 1.75em;
+  min-height: 3em;
+}
+
+.Transaction + .Transaction {
+  border-top: 1px solid #e0e0e0;
+}
+
+.Transaction-content {
+  display: inline-block;
+  width: 90%;
+}
+
+.Transaction-value {
+  font-size: 1.25em;
+  vertical-align: super;
+  width: 25%;
+}
+
+.Transaction-value,
+.Transaction-description,
+.Transaction-details {
+  display: inline-block;
+}
+
+.Transaction-value,
+.Transaction-date,
+.Transaction-category,
+.Transaction-description {
+  margin: 0;
+}
+
+.Transaction-details {
+  width: 25%;
+  text-align: right;
+}
+
+.Transaction-category {
+  font-size: 0.75em;
+}
+
+.Transaction-categoryText {
+  text-transform: capitalize;
+  color: #616161;
+  border: 1px solid #616161;
+  background-color: #bdbdbd;
+  padding: 0.5em 0.75em;
+}
+
+.Transaction-description {
+  color: #9e9e9e;
+  vertical-align: super;
+  font-style: italic;
+  width: 50%;
+}
+
+.Transaction-actions {
+  display: inline-block;
+  text-align: right;
+  height: 100%;
+  vertical-align: top;
+  width: 10%;
+}
+
+.Transaction-chevron {
+  color: #9e9e9e;
+  font-size: 1.5em;
+  line-height: 2.25em;
+}

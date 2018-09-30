@@ -41,7 +41,7 @@ const transactionCategoryChoices: Array<{
 }> = [
   { label: 'gasto fixo', value: 'fixed-expense' },
   { label: 'transporte', value: 'transport' },
-  { label: 'comida', value: 'food' },
+  { label: 'alimentacao', value: 'food' },
   { label: 'outros', value: 'other' }
 ];
 
