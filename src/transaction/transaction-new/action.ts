@@ -22,8 +22,6 @@ export const saveTransaction = (
       })
     )
     .then(() =>
-      history.push(
-        `/tracking-period/${transaction.trackingPeriodId}/transaction`
-      )
+      history.push(`/tracking-period/${transaction.trackingPeriodId}`)
     );
 };

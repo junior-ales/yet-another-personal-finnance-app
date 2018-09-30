@@ -19,5 +19,7 @@ export const selectTransaction = (
         type: ActionKeys.SELECT_TRANSACTION
       })
     )
-    .then(() => history.push('transaction/' + transactionId));
+    .then(() =>
+      history.push(history.location.pathname + '/transaction/' + transactionId)
+    );
 };

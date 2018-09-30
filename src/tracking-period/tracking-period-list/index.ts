@@ -32,7 +32,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchToProps, {}> = (
     dispatch(selectTrackingPeriod(trackingPeriodId, history))
 });
 
-export default (withRouter as any)(
+export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps

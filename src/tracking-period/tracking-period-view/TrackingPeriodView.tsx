@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import { TrackingPeriodViewProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
+import TransactionList from '../../transaction/transaction-list';
 
 const Oops = () => <h2>Ooops, something went wrong</h2>;
 
@@ -34,6 +35,8 @@ export class TrackingPeriodView extends React.Component<
             Meta de Poupanca <span>£{trackingPeriod.plannedSavings}</span>
           </p>
         </section>
+
+        <TransactionList trackingPeriodId={trackingPeriod.id} />
 
         <ButtonLink
           to={match.url + '/transaction/new'}

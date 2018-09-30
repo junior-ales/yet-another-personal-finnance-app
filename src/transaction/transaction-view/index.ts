@@ -15,4 +15,4 @@ const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
   transaction: selectedTransaction(state)
 });
 
-export default (withRouter as any)(connect(mapStateToProps)(TransactionView));
+export default withRouter(connect(mapStateToProps)(TransactionView));

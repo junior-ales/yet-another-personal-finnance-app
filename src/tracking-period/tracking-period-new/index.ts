@@ -24,7 +24,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchToProps, {}> = (
 
 export type TrackingPeriodNewProps = DispatchToProps & RouteComponentProps;
 
-export default (withRouter as any)(
+export default withRouter(
   connect(
     null,
     mapDispatchToProps

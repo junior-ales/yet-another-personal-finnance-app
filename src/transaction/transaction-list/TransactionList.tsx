@@ -1,6 +1,5 @@
 import * as R from 'ramda';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 import { TransactionListProps } from '.';
 import { Transaction } from '../../shared/store';
@@ -27,27 +26,21 @@ export class TransactionList extends React.Component<TransactionListProps> {
   };
 
   public render() {
-    const { match, transactions } = this.props;
+    const { transactions } = this.props;
 
     return (
       <section>
-        <header>Transactions</header>
-
-        <section>
-          {R.not(R.isEmpty(transactions)) && (
-            <ul>
-              {transactions.map(t => (
-                <Transaction
-                  key={t.id}
-                  transaction={t}
-                  onClick={this.handleSelectTransaction}
-                />
-              ))}
-            </ul>
-          )}
-
-          <Link to={match.url + '/new'}>New Transaction</Link>
-        </section>
+        {R.not(R.isEmpty(transactions)) && (
+          <ul>
+            {transactions.map(t => (
+              <Transaction
+                key={t.id}
+                transaction={t}
+                onClick={this.handleSelectTransaction}
+              />
+            ))}
+          </ul>
+        )}
       </section>
     );
   }

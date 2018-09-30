@@ -4,7 +4,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import TrackingPeriodList from '../tracking-period/tracking-period-list';
 import TrackingPeriodNew from '../tracking-period/tracking-period-new';
 import TrackingPeriodView from '../tracking-period/tracking-period-view';
-import TransactionList from '../transaction/transaction-list';
 import TransactionNew from '../transaction/transaction-new';
 import TransactionView from '../transaction/transaction-view';
 
@@ -34,11 +33,6 @@ export class App extends React.Component {
             exact={true}
             path="/tracking-period/:trackingPeriodId"
             component={TrackingPeriodView}
-          />
-          <Route
-            exact={true}
-            path="/tracking-period/:trackingPeriodId/transaction"
-            component={TransactionList}
           />
           <Route
             exact={true}

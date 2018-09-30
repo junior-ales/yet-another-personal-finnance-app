@@ -20,6 +20,4 @@ const mapStateToProps: MapStateToProps<StateToProps, {}, AppState> = state => ({
   transactions: selectedTrackingPeriodTransactions(state)
 });
 
-export default (withRouter as any)(
-  connect(mapStateToProps)(TrackingPeriodView)
-);
+export default withRouter(connect(mapStateToProps)(TrackingPeriodView));
