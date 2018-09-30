@@ -37,6 +37,7 @@ export function InlineSelectionField<T = {}>(props: InlineSelectionFieldProps) {
             <div className="InlineSelectionField-componentBox">
               {props.choices.map(choice => (
                 <button
+                  key={'choice-' + choice.value}
                   type="button"
                   className={buttonClasses(choice.value)}
                   onClick={handleOnClick(choice.value)}
