@@ -1,3 +1,11 @@
+.TrackingPeriodsHeader {
+  padding: 1em;
+}
+
+.TrackingPeriodsHeader-content {
+  margin: 0;
+}
+
 .EmptyTrackingPeriods {
   position: absolute;
   left: 50%;
@@ -12,10 +20,52 @@
   text-align: center;
 }
 
-.TrackingPeriodsHeader {
-  padding: 1em;
+.TrackingPeriods {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.TrackingPeriodsHeader-content {
-  margin: 0;
+.TrackingPeriod-content {
+  display: inline-block;
+  width: 90%;
+}
+
+.TrackingPeriod-actions {
+  display: inline-block;
+  text-align: right;
+  height: 100%;
+  vertical-align: top;
+  width: 10%;
+}
+
+.TrackingPeriod-chevron {
+  color: #9e9e9e;
+  font-size: 1.5em;
+  line-height: 2em;
+}
+
+.TrackingPeriod {
+  background-color: #fafafa;
+  padding: 1em;
+  min-height: 3em;
+}
+
+.TrackingPeriod + .TrackingPeriod {
+  border-top: 1px solid #e0e0e0;
+}
+
+.TrackingPeriod-header {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: 1.25em;
+}
+
+.TrackingPeriod-details + .TrackingPeriod-details {
+  margin-left: 1em;
+}
+
+.TrackingPeriod-label {
+  color: #9e9e9e;
+  margin-right: 0.5em;
 }
