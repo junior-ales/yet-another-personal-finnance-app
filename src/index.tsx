@@ -7,7 +7,6 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
 import { App } from './app/App';
-import registerServiceWorker from './registerServiceWorker';
 import { configureStore } from './shared/store/configureStore';
 
 import './index.css';
@@ -22,5 +21,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root') as HTMLElement
 );
-
-registerServiceWorker();
