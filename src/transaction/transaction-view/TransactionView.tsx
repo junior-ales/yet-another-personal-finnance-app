@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Route } from 'react-router-dom';
 
 import { TransactionViewProps } from '.';
+import { ButtonLink } from '../../shared/components/ButtonLink';
+import { PageHeader } from '../../shared/components/PageHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
+
+import './transactionView.css';
 
 export class TransactionView extends React.Component<TransactionViewProps> {
   public render() {
@@ -10,8 +14,21 @@ export class TransactionView extends React.Component<TransactionViewProps> {
 
     return transaction ? (
       <section>
-        <h2>Transaction Details</h2>
-        {JSON.stringify(transaction)}
+        <PageHeader title="Detalhe da Transacao" />
+
+        <section className="TransactionView">
+          <p>{transaction.description || '<Sem descricao>'}</p>
+          <p>{transaction.date.format('DD/MMM/YYYY')}</p>
+          <p>{transaction.category}</p>
+          <p>{transaction.type}</p>
+          <p>{transaction.value}</p>
+        </section>
+
+        <ButtonLink
+          to={`/tracking-period/${transaction.trackingPeriodId}`}
+          secondary={true}
+          label="Voltar"
+        />
       </section>
     ) : (
       <Route component={RouteNotFound} />
