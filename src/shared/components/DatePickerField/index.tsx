@@ -3,6 +3,8 @@ import { Moment } from 'moment';
 import * as React from 'react';
 import { SingleDatePicker } from 'react-dates';
 
+import './datePickerField.css';
+
 interface DatePickerFieldProps {
   name: string;
   label?: string;
@@ -32,35 +34,39 @@ export class DatePickerField<T = {}> extends React.Component<
       <Field name={this.props.name}>
         {({ form, field }: FieldProps<T>) => {
           return (
-            <>
+            <div className="DatePickerField">
               {this.props.label && (
-                <label htmlFor={`date-picker-${field.name}`}>
-                  {this.props.label}
-                </label>
+                <div className="DatePickerField-componentBox">
+                  <label htmlFor={`date-picker-${field.name}`}>
+                    {this.props.label}
+                  </label>
+                </div>
               )}
-              <SingleDatePicker
-                id={`date-picker-${field.name}`}
-                date={this.state.date}
-                // tslint:disable-next-line:jsx-no-lambda
-                onDateChange={date =>
-                  this.setState({ date }, () =>
-                    form.setFieldValue(field.name, date)
-                  )
-                }
-                focused={this.state.isFocused}
-                // tslint:disable-next-line:jsx-no-lambda
-                onFocusChange={({ focused }) =>
-                  this.setState({ isFocused: !!focused })
-                }
-                orientation="vertical"
-                displayFormat="DD/MMM/YYYY"
-                isOutsideRange={() => false} // tslint:disable-line:jsx-no-lambda
-                numberOfMonths={1}
-                verticalHeight={400}
-                block={true}
-                small={true}
-              />
-            </>
+              <div className="DatePickerField-componentBox">
+                <SingleDatePicker
+                  id={`date-picker-${field.name}`}
+                  date={this.state.date}
+                  // tslint:disable-next-line:jsx-no-lambda
+                  onDateChange={date =>
+                    this.setState({ date }, () =>
+                      form.setFieldValue(field.name, date)
+                    )
+                  }
+                  focused={this.state.isFocused}
+                  // tslint:disable-next-line:jsx-no-lambda
+                  onFocusChange={({ focused }) =>
+                    this.setState({ isFocused: !!focused })
+                  }
+                  orientation="vertical"
+                  displayFormat="DD/MMM/YYYY"
+                  isOutsideRange={() => false} // tslint:disable-line:jsx-no-lambda
+                  numberOfMonths={1}
+                  verticalHeight={400}
+                  block={true}
+                  small={true}
+                />
+              </div>
+            </div>
           );
         }}
       </Field>

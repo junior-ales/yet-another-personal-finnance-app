@@ -1,0 +1,12 @@
+.DatePickerField {
+  margin-bottom: 1.5em;
+}
+
+.DatePickerField-componentBox {
+  margin-bottom: 0.5em;
+}
+
+/* override of SingleDatePicker lib */
+.DateInput_input {
+  color: #212121;
+}

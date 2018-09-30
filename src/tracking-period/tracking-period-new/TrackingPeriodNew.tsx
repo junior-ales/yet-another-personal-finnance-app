@@ -56,9 +56,14 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
                 name="plannedSavings"
                 label="Meta de Poupanca"
               />
-              <DatePickerField name="startDate" label="Data deste Orcamento" />
+              <DatePickerField
+                name="startDate"
+                initialDate={moment()}
+                label="Data deste Orcamento"
+              />
               <DatePickerField
                 name="endDate"
+                initialDate={moment().add(1, 'month')}
                 label="Data do Proximo Orcamento"
               />
               <Button type="submit" value="Salvar" />
