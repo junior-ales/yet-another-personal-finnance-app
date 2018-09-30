@@ -3,13 +3,19 @@ import { Link } from 'react-router-dom';
 
 import './buttonLink.css';
 
-export const ButtonLink = (props: any) => {
-  const { to, label, ...otherProps } = props;
+interface ButtonLinkProps {
+  to: string;
+  label?: string;
+  [props: string]: any;
+}
+
+export const ButtonLink: React.SFC<ButtonLinkProps> = props => {
+  const { to, label, children, ...otherProps } = props;
 
   return (
     <div className="ButtonLink-wrapper">
       <Link to={to} className="ButtonLink" {...otherProps}>
-        {label}
+        {label ? label : children}
       </Link>
     </div>
   );
