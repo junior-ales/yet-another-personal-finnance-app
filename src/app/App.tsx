@@ -7,9 +7,8 @@ import TrackingPeriodView from '../tracking-period/tracking-period-view';
 import TransactionNew from '../transaction/transaction-new';
 import TransactionView from '../transaction/transaction-view';
 
+import { RouteNotFound } from '../shared/components/RouteNotFound';
 import { Header } from './header/Header';
-
-const Oops = () => <h2>Ooops, something went wrong</h2>;
 
 export class App extends React.Component {
   public render() {
@@ -44,7 +43,7 @@ export class App extends React.Component {
             path="/tracking-period/:trackingPeriodId/transaction/:transactionId"
             component={TransactionView}
           />
-          <Route component={Oops} />
+          <Route component={RouteNotFound} />
         </Switch>
       </section>
     );

@@ -4,9 +4,8 @@ import { Route } from 'react-router-dom';
 import { TrackingPeriodViewProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
+import { RouteNotFound } from '../../shared/components/RouteNotFound';
 import TransactionList from '../../transaction/transaction-list';
-
-const Oops = () => <h2>Ooops, something went wrong</h2>;
 
 const transactionsSum = 10;
 
@@ -44,7 +43,7 @@ export class TrackingPeriodView extends React.Component<
         />
       </section>
     ) : (
-      <Route component={Oops} />
+      <Route component={RouteNotFound} />
     );
   }
 }
