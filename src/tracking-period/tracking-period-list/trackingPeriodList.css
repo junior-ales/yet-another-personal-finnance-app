@@ -1,11 +1,3 @@
-.TrackingPeriodsHeader {
-  padding: 1em;
-}
-
-.TrackingPeriodsHeader-content {
-  margin: 0;
-}
-
 .EmptyTrackingPeriods {
   position: absolute;
   left: 50%;

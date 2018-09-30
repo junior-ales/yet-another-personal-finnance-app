@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { TrackingPeriodListProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
+import { PageHeader } from '../../shared/components/PageHeader';
 import { TrackingPeriod } from '../../shared/store';
 
 import './trackingPeriodList.css';
@@ -72,9 +73,7 @@ export class TrackingPeriodList extends React.Component<
 
     return (
       <section>
-        <header className="TrackingPeriodsHeader">
-          <h1 className="TrackingPeriodsHeader-content">Periodos</h1>
-        </header>
+        <PageHeader title="Periodos" />
 
         <section>
           {R.isEmpty(trackingPeriods) ? (

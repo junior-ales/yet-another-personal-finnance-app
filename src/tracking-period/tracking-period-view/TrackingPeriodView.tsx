@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link, Route } from 'react-router-dom';
 
 import { TrackingPeriodViewProps } from '.';
+import { PageHeader } from '../../shared/components/PageHeader';
 
 const Oops = () => <h2>Ooops, something went wrong</h2>;
 
@@ -13,7 +14,11 @@ export class TrackingPeriodView extends React.Component<
 
     return trackingPeriod ? (
       <section>
-        <h2>TP Details</h2>
+        <PageHeader>
+          Periodo {trackingPeriod.startDate.format('DD/MMM')} &#10141;{' '}
+          {trackingPeriod.endDate.format('DD/MMM')}
+        </PageHeader>
+
         {JSON.stringify(trackingPeriod)}
         {JSON.stringify(transactions)}
         <div>
