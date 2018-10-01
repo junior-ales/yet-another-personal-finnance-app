@@ -45,6 +45,15 @@ const transactionCategoryChoices: Array<{
   { label: 'outros', value: 'other' }
 ];
 
+const setValueSign = (transaction: Transaction): Transaction => {
+  const value: number =
+    transaction.type === 'debit'
+      ? Math.abs(transaction.value) * -1
+      : Math.abs(transaction.value);
+
+  return { ...transaction, value };
+};
+
 interface TransactionNewState {
   isEditing: boolean;
 }
@@ -68,11 +77,12 @@ export class TransactionNew extends React.Component<
 
   public handleOnSave = (
     transaction: Transaction,
-    actions: FormikActions<Transaction>
+    { setSubmitting }: FormikActions<Transaction>
   ): void => {
     const { onSaveTransaction, history } = this.props;
-    onSaveTransaction(transaction, history);
-    actions.setSubmitting(false);
+
+    onSaveTransaction(setValueSign(transaction), history);
+    setSubmitting(false);
   };
 
   public render() {

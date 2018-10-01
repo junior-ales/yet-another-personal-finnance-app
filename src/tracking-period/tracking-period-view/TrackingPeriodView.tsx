@@ -13,8 +13,11 @@ import './trackingPeriodView.css';
 
 const emptyTransactions: Transaction[] = [];
 
-const aggregateValue = (transactions = emptyTransactions): number =>
-  transactions.reduce((acc, t) => acc + t.value, 0);
+const aggregateValue = (
+  transactions = emptyTransactions,
+  initialValue = 0
+): number =>
+  transactions.reduce((acc, t: Transaction) => acc + t.value, initialValue);
 
 export class TrackingPeriodView extends React.Component<
   TrackingPeriodViewProps
@@ -34,7 +37,7 @@ export class TrackingPeriodView extends React.Component<
             Valor Corrente{' '}
             <span>
               {formatNumber(
-                trackingPeriod.initialBudget - aggregateValue(transactions)
+                aggregateValue(transactions, trackingPeriod.initialBudget)
               )}
             </span>
           </p>

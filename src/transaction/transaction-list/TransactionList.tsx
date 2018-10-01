@@ -27,7 +27,6 @@ const Transaction = (props: TransactionProps) => {
     <li className="Transaction" onClick={handleOnClick(transaction.id)}>
       <section className="Transaction-content">
         <section className="Transaction-value">
-          <span>{transaction.type === 'debit' ? '- ' : '+ '}</span>
           {formatNumber(transaction.value)}
         </section>
         <p className="Transaction-description">
