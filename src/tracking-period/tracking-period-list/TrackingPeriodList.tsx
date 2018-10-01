@@ -24,13 +24,7 @@ interface TrackingPeriodProps {
 
 const TrackingPeriod = (props: TrackingPeriodProps) => {
   const handleOnClick = (tpId: string) => () => props.onClick(tpId);
-  const {
-    id,
-    startDate,
-    endDate,
-    initialBudget,
-    plannedSavings
-  } = props.trackingPeriod;
+  const { id, startDate, endDate, plannedSavings } = props.trackingPeriod;
 
   return (
     <li className="TrackingPeriod" onClick={handleOnClick(id)}>
@@ -41,12 +35,6 @@ const TrackingPeriod = (props: TrackingPeriodProps) => {
           </h1>
         </header>
         <section>
-          <span className="TrackingPeriod-details">
-            <span className="TrackingPeriod-label">Total</span>
-            <span className="TrackingPeriod-value">
-              {formatNumber(initialBudget)}
-            </span>
-          </span>
           <span className="TrackingPeriod-details">
             <span className="TrackingPeriod-label">Planejado</span>
             <span className="TrackingPeriod-value">

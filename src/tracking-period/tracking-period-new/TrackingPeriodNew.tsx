@@ -13,7 +13,7 @@ import { TrackingPeriod } from '../../shared/store';
 import './trackingPeriodNew.css';
 
 const newTrackingPeriod = (): TrackingPeriod => ({
-  endDate: moment(),
+  endDate: moment().add(1, 'month'),
   id: uuid(),
   initialBudget: 0,
   plannedSavings: 0,
