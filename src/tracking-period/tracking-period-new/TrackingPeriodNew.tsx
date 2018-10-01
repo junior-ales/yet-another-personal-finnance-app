@@ -50,11 +50,13 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
                 type="number"
                 name="initialBudget"
                 label="Orcamento Inicial"
+                placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
               />
               <InputField
                 type="number"
                 name="plannedSavings"
                 label="Meta de Poupanca"
+                placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
               />
               <DatePickerField
                 name="startDate"

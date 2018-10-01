@@ -70,7 +70,12 @@ export class TransactionNew extends React.Component<TransactionNewProps> {
         <Formik initialValues={this.initialValues} onSubmit={this.handleOnSave}>
           {() => (
             <Form className="NewTransactionForm">
-              <InputField type="text" name="description" label="Descricao" />
+              <InputField
+                type="text"
+                name="description"
+                label="Descricao"
+                placeholder="Descricao da transacao financeira"
+              />
               <InlineSelectionField
                 name="category"
                 label="Categoria"
@@ -81,7 +86,12 @@ export class TransactionNew extends React.Component<TransactionNewProps> {
                 label="Tipo"
                 choices={transactionTypeChoices}
               />
-              <InputField type="number" name="value" label="Valor" />
+              <InputField
+                type="number"
+                name="value"
+                label="Valor"
+                placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
+              />
               <DatePickerField
                 name="date"
                 initialDate={moment()}

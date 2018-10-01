@@ -6,6 +6,7 @@ import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
 import { Transaction } from '../../shared/store';
+import { formatNumber } from '../../shared/utils/formatNumber';
 import TransactionList from '../../transaction/transaction-list';
 
 import './trackingPeriodView.css';
@@ -32,14 +33,18 @@ export class TrackingPeriodView extends React.Component<
           <p>
             Valor Corrente{' '}
             <span>
-              £{trackingPeriod.initialBudget - aggregateValue(transactions)}
+              {formatNumber(
+                trackingPeriod.initialBudget - aggregateValue(transactions)
+              )}
             </span>
           </p>
           <p>
-            Orcamento inicial <span>£{trackingPeriod.initialBudget}</span>
+            Orcamento inicial{' '}
+            <span>{formatNumber(trackingPeriod.initialBudget)}</span>
           </p>
           <p>
-            Meta de Poupanca <span>£{trackingPeriod.plannedSavings}</span>
+            Meta de Poupanca{' '}
+            <span>{formatNumber(trackingPeriod.plannedSavings)}</span>
           </p>
         </section>
 

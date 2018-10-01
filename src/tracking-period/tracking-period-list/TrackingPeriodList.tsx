@@ -5,6 +5,7 @@ import { TrackingPeriodListProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { TrackingPeriod } from '../../shared/store';
+import { formatNumber } from '../../shared/utils/formatNumber';
 
 import './trackingPeriodList.css';
 
@@ -42,15 +43,21 @@ const TrackingPeriod = (props: TrackingPeriodProps) => {
         <section>
           <span className="TrackingPeriod-details">
             <span className="TrackingPeriod-label">Total</span>
-            <span className="TrackingPeriod-value">£{initialBudget}</span>
+            <span className="TrackingPeriod-value">
+              {formatNumber(initialBudget)}
+            </span>
           </span>
           <span className="TrackingPeriod-details">
             <span className="TrackingPeriod-label">Planejado</span>
-            <span className="TrackingPeriod-value">£{plannedSavings}</span>
+            <span className="TrackingPeriod-value">
+              {formatNumber(plannedSavings)}
+            </span>
           </span>
           <span className="TrackingPeriod-details">
             <span className="TrackingPeriod-label">Poupado</span>
-            <span className="TrackingPeriod-value">£{plannedSavings}</span>
+            <span className="TrackingPeriod-value">
+              {formatNumber(plannedSavings)}
+            </span>
           </span>
         </section>
       </section>

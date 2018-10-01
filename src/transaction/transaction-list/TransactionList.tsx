@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { TransactionListProps } from '.';
 import { Transaction } from '../../shared/store';
+import { formatNumber } from '../../shared/utils/formatNumber';
 
 import './transactionList.css';
 
@@ -27,8 +28,7 @@ const Transaction = (props: TransactionProps) => {
       <section className="Transaction-content">
         <section className="Transaction-value">
           <span>{transaction.type === 'debit' ? '- ' : '+ '}</span>
-          {'£ '}
-          {transaction.value}
+          {formatNumber(transaction.value)}
         </section>
         <p className="Transaction-description">
           {transaction.description || '<Sem descricao>'}

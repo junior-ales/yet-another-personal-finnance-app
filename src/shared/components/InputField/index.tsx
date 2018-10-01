@@ -14,26 +14,31 @@ export function InputField<T = {}>(inputProps: InputFieldProps) {
 
   return (
     <Field name={name}>
-      {(props: FieldProps<T>) => (
-        <div className="InputField">
-          {label && (
+      {(props: FieldProps<T>) => {
+        const { value, ...otherFieldProps } = props.field;
+
+        return (
+          <div className="InputField">
+            {label && (
+              <div className="InputField-componentBox">
+                <label className="InputField-label" htmlFor={props.field.name}>
+                  {label}
+                </label>
+              </div>
+            )}
             <div className="InputField-componentBox">
-              <label className="InputField-label" htmlFor={props.field.name}>
-                {label}
-              </label>
+              <input
+                className="InputField-input"
+                id={props.field.name}
+                type={type}
+                value={value === 0 ? '' : value}
+                {...otherProps}
+                {...otherFieldProps}
+              />
             </div>
-          )}
-          <div className="InputField-componentBox">
-            <input
-              className="InputField-input"
-              id={props.field.name}
-              type={type}
-              {...otherProps}
-              {...props.field}
-            />
           </div>
-        </div>
-      )}
+        );
+      }}
     </Field>
   );
 }
