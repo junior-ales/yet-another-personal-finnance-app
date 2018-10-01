@@ -9,5 +9,6 @@
 /* override of SingleDatePicker lib */
 .DateInput_input {
   color: #212121;
+  min-height: 2.5rem;
   background-color: #fafafa;
 }
