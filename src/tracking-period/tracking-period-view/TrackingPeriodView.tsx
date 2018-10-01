@@ -51,7 +51,7 @@ export class TrackingPeriodView extends React.Component<
           </p>
         </section>
 
-        <TransactionList trackingPeriodId={trackingPeriod.id} />
+        <TransactionList transactions={transactions} />
 
         <ButtonLink
           to={match.url + '/transaction/new'}

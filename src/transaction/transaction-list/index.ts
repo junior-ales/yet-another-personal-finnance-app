@@ -10,6 +10,7 @@ import { allTransactions, transactionsByTrackingPeriodId } from './selector';
 import { TransactionList } from './TransactionList';
 
 interface OwnProps {
+  transactions?: Transaction[];
   trackingPeriodId?: string;
 }
 
@@ -28,11 +29,13 @@ export type TransactionListProps = OwnProps &
 
 const mapStateToProps: MapStateToProps<StateToProps, OwnProps, AppState> = (
   state,
-  { trackingPeriodId }
+  { trackingPeriodId, transactions }
 ) => ({
-  transactions: trackingPeriodId
-    ? transactionsByTrackingPeriodId(trackingPeriodId, state)
-    : allTransactions(state)
+  transactions:
+    transactions ||
+    (trackingPeriodId
+      ? transactionsByTrackingPeriodId(trackingPeriodId, state)
+      : allTransactions(state))
 });
 
 const mapDispatchToProps: MapDispatchToProps<DispatchToProps, OwnProps> = (
