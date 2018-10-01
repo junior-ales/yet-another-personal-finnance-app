@@ -29,6 +29,9 @@ export class DatePickerField<T = {}> extends React.Component<
     };
   }
 
+  public onFocusChange = ({ focused }: { focused: boolean }) =>
+    this.setState({ isFocused: !!focused });
+
   public render() {
     return (
       <Field name={this.props.name}>
@@ -53,15 +56,11 @@ export class DatePickerField<T = {}> extends React.Component<
                     )
                   }
                   focused={this.state.isFocused}
-                  // tslint:disable-next-line:jsx-no-lambda
-                  onFocusChange={({ focused }) =>
-                    this.setState({ isFocused: !!focused })
-                  }
+                  onFocusChange={this.onFocusChange}
+                  withFullScreenPortal={true}
                   orientation="vertical"
                   displayFormat="DD/MMM/YYYY"
                   isOutsideRange={() => false} // tslint:disable-line:jsx-no-lambda
-                  numberOfMonths={1}
-                  verticalHeight={400}
                   block={true}
                   small={true}
                 />

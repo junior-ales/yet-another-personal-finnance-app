@@ -10,12 +10,19 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function InputField<T = {}>(inputProps: InputFieldProps) {
-  const { name, type, label, ...otherProps } = inputProps;
+  const { name, type, label, onBlur, ...otherProps } = inputProps;
 
   return (
     <Field name={name}>
       {(props: FieldProps<T>) => {
-        const { value, ...otherFieldProps } = props.field;
+        const { onBlur: fieldOnBlur, value, ...otherFieldProps } = props.field;
+
+        const handleOnBlur = (e: any) => {
+          if (onBlur) {
+            onBlur(e);
+          }
+          fieldOnBlur(e);
+        };
 
         return (
           <div className="InputField">
@@ -28,12 +35,13 @@ export function InputField<T = {}>(inputProps: InputFieldProps) {
             )}
             <div className="InputField-componentBox">
               <input
-                className="InputField-input"
-                id={props.field.name}
-                type={type}
-                value={value === 0 ? '' : value}
                 {...otherProps}
                 {...otherFieldProps}
+                id={props.field.name}
+                type={type}
+                className="InputField-input"
+                onBlur={handleOnBlur}
+                value={value === 0 ? '' : value}
               />
             </div>
           </div>

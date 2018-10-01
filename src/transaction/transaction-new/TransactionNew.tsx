@@ -45,14 +45,26 @@ const transactionCategoryChoices: Array<{
   { label: 'outros', value: 'other' }
 ];
 
-export class TransactionNew extends React.Component<TransactionNewProps> {
+interface TransactionNewState {
+  isEditing: boolean;
+}
+
+export class TransactionNew extends React.Component<
+  TransactionNewProps,
+  TransactionNewState
+> {
   private initialValues: Transaction;
 
   constructor(props: TransactionNewProps) {
     super(props);
 
+    this.state = { isEditing: false };
     this.initialValues = newTransaction(props.trackingPeriodSelected);
   }
+
+  public startEditingField = () => this.setState({ isEditing: true });
+
+  public finishEditingField = () => this.setState({ isEditing: false });
 
   public handleOnSave = (
     transaction: Transaction,
@@ -75,6 +87,8 @@ export class TransactionNew extends React.Component<TransactionNewProps> {
                 name="description"
                 label="Descricao"
                 placeholder="Descricao da transacao financeira"
+                onFocus={this.startEditingField}
+                onBlur={this.finishEditingField}
               />
               <InlineSelectionField
                 name="category"
@@ -91,13 +105,19 @@ export class TransactionNew extends React.Component<TransactionNewProps> {
                 name="value"
                 label="Valor"
                 placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
+                onFocus={this.startEditingField}
+                onBlur={this.finishEditingField}
               />
               <DatePickerField
                 name="date"
                 initialDate={moment()}
                 label="Data"
               />
-              <Button type="submit" value="Salvar" />
+              <Button
+                type="submit"
+                value="Salvar"
+                fixDown={this.state.isEditing}
+              />
             </Form>
           )}
         </Formik>

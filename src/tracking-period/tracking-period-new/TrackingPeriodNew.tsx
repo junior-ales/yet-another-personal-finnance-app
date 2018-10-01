@@ -20,14 +20,27 @@ const newTrackingPeriod = (): TrackingPeriod => ({
   startDate: moment()
 });
 
-export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
+interface TrackingPeriodNewState {
+  isEditing: boolean;
+}
+
+export class TrackingPeriodNew extends React.Component<
+  TrackingPeriodNewProps,
+  TrackingPeriodNewState
+> {
   private initialValues: TrackingPeriod;
 
   constructor(props: TrackingPeriodNewProps) {
     super(props);
 
     this.initialValues = newTrackingPeriod();
+
+    this.state = { isEditing: false };
   }
+
+  public startEditingField = () => this.setState({ isEditing: true });
+
+  public finishEditingField = () => this.setState({ isEditing: false });
 
   public handleOnSave = (
     trackingPeriod: TrackingPeriod,
@@ -51,12 +64,16 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
                 name="initialBudget"
                 label="Orcamento Inicial"
                 placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
+                onFocus={this.startEditingField}
+                onBlur={this.finishEditingField}
               />
               <InputField
                 type="number"
                 name="plannedSavings"
                 label="Meta de Poupanca"
                 placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
+                onFocus={this.startEditingField}
+                onBlur={this.finishEditingField}
               />
               <DatePickerField
                 name="startDate"
@@ -68,7 +85,11 @@ export class TrackingPeriodNew extends React.Component<TrackingPeriodNewProps> {
                 initialDate={moment().add(1, 'month')}
                 label="Data do Proximo Orcamento"
               />
-              <Button type="submit" value="Salvar" />
+              <Button
+                type="submit"
+                value="Salvar"
+                fixDown={this.state.isEditing}
+              />
             </Form>
           )}
         </Formik>
