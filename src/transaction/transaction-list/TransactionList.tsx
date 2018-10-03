@@ -2,6 +2,7 @@ import * as R from 'ramda';
 import * as React from 'react';
 
 import { TransactionListProps } from '.';
+import { PageSubHeader } from '../../shared/components/PageSubHeader';
 import { Transaction } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
 
@@ -62,7 +63,7 @@ export class TransactionList extends React.Component<TransactionListProps> {
       <section>
         {R.not(R.isEmpty(transactions)) && (
           <>
-            <h2 className="TransactionList-title">Transacoes</h2>
+            <PageSubHeader title="Transacoes" />
             <ul className="TransactionList">
               {transactions.map(t => (
                 <Transaction

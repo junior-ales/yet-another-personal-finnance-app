@@ -1,9 +1,11 @@
+import * as R from 'ramda';
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 
 import { TrackingPeriodViewProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
+import { PageSubHeader } from '../../shared/components/PageSubHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
 import { Transaction } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
@@ -33,27 +35,43 @@ export class TrackingPeriodView extends React.Component<
           {trackingPeriod.endDate.format('DD/MMM')}
         </PageHeader>
 
-        <section className="TrackingPeriodView-content">
-          <SpendingChart dataValue={transactions} />
-        </section>
+        {R.not(R.isEmpty(transactions)) && (
+          <>
+            <section className="TrackingPeriodView-content">
+              <SpendingChart dataValue={transactions} />
+            </section>
+
+            <PageSubHeader title="Detalhes" />
+          </>
+        )}
 
         <section className="TrackingPeriodView-content">
-          <p>
-            Valor Corrente{' '}
-            <span>
-              {formatNumber(
-                aggregateValue(transactions, trackingPeriod.initialBudget)
-              )}
-            </span>
-          </p>
-          <p>
-            Orcamento inicial{' '}
-            <span>{formatNumber(trackingPeriod.initialBudget)}</span>
-          </p>
-          <p>
-            Meta de Poupanca{' '}
-            <span>{formatNumber(trackingPeriod.plannedSavings)}</span>
-          </p>
+          <table className="TrackingPeriodDetails-table">
+            <tbody>
+              <tr className="TrackingPeriodDetails-row">
+                <td className="TrackingPeriodDetails-label">Proximo Salario</td>
+                <td className="TrackingPeriodDetails-content">em 14 dias</td>
+                <td className="TrackingPeriodDetails-label">Valor a Gastar</td>
+                <td className="TrackingPeriodDetails-content">
+                  {formatNumber(321)}
+                </td>
+              </tr>
+              <tr className="TrackingPeriodDetails-row">
+                <td className="TrackingPeriodDetails-label">Valor Corrente</td>
+                <td className="TrackingPeriodDetails-content">
+                  {formatNumber(
+                    aggregateValue(transactions, trackingPeriod.initialBudget)
+                  )}
+                </td>
+                <td className="TrackingPeriodDetails-label">
+                  Meta de Poupanca
+                </td>
+                <td className="TrackingPeriodDetails-content">
+                  {formatNumber(trackingPeriod.plannedSavings)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </section>
 
         <TransactionList transactions={transactions} />

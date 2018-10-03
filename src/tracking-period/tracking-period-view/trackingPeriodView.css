@@ -5,3 +5,26 @@
 .TrackingPeriodView-content {
   padding: 0 1em 1em 1em;
 }
+
+.TrackingPeriodDetails-table {
+  font-size: 1em;
+  width: 100%;
+}
+
+.TrackingPeriodDetails-row {
+  line-height: 1.5em;
+}
+
+.TrackingPeriodDetails-label {
+  color: #757575;
+  text-align: left;
+}
+
+.TrackingPeriodDetails-content {
+  font-weight: bold;
+  text-align: right;
+}
+
+.TrackingPeriodDetails-content + .TrackingPeriodDetails-label {
+  padding-left: 1em;
+}

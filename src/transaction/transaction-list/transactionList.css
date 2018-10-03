@@ -4,13 +4,6 @@
   list-style: none;
 }
 
-.TransactionList-title {
-  font-size: 1.25em;
-  padding: 1rem;
-  padding-top: 0;
-  margin: 0;
-}
-
 .Transaction {
   background-color: #fafafa;
   padding: 0.5em 1em 1em 1em;
