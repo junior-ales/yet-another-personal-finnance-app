@@ -1,0 +1,14 @@
+.SpendingChart {
+  text-align: center;
+}
+
+.SpendingChart-chart,
+.SpendingChart-legend {
+  display: inline-block;
+}
+
+.SpendingChart-legend {
+  vertical-align: top;
+  padding-top: 3em;
+  text-align: left;
+}

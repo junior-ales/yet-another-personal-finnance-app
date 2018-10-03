@@ -7,6 +7,7 @@ import { PageHeader } from '../../shared/components/PageHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
 import { Transaction } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
+import SpendingChart from '../../transaction/spending-chart';
 import TransactionList from '../../transaction/transaction-list';
 
 import './trackingPeriodView.css';
@@ -31,6 +32,10 @@ export class TrackingPeriodView extends React.Component<
           Periodo {trackingPeriod.startDate.format('DD/MMM')} &#10141;{' '}
           {trackingPeriod.endDate.format('DD/MMM')}
         </PageHeader>
+
+        <section className="TrackingPeriodView-content">
+          <SpendingChart dataValue={transactions} />
+        </section>
 
         <section className="TrackingPeriodView-content">
           <p>

@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import 'react-vis/dist/style.css';
 
 import { App } from './app/App';
 import { configureStore } from './shared/store/configureStore';
