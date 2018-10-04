@@ -1,3 +1,5 @@
+import { fromPredicate } from 'fp-ts/lib/Option';
+import * as moment from 'moment';
 import * as R from 'ramda';
 import * as React from 'react';
 import { Route } from 'react-router-dom';
@@ -7,7 +9,7 @@ import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { PageSubHeader } from '../../shared/components/PageSubHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
-import { Transaction } from '../../shared/store';
+import { TrackingPeriod, Transaction } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
 import SpendingChart from '../../transaction/spending-chart';
 import TransactionList from '../../transaction/transaction-list';
@@ -21,6 +23,19 @@ const aggregateValue = (
   initialValue = 0
 ): number =>
   transactions.reduce((acc, t: Transaction) => acc + t.value, initialValue);
+
+const currentDateIsWithingPeriod = fromPredicate(
+  (t: TrackingPeriod): boolean => moment().isBetween(t.startDate, t.endDate)
+);
+
+const remainingDaysTill = (endDate: moment.Moment): number =>
+  endDate.diff(moment(), 'days');
+
+const remainingDays = (trackingPeriod: TrackingPeriod): string =>
+  currentDateIsWithingPeriod(trackingPeriod)
+    .map(t => remainingDaysTill(t.endDate))
+    .map(days => `em ${days} dia${days === 1 ? '' : 's'}`)
+    .getOrElse('-');
 
 export class TrackingPeriodView extends React.Component<
   TrackingPeriodViewProps
@@ -50,7 +65,9 @@ export class TrackingPeriodView extends React.Component<
             <tbody>
               <tr className="TrackingPeriodDetails-row">
                 <td className="TrackingPeriodDetails-label">Proximo Salario</td>
-                <td className="TrackingPeriodDetails-content">em 14 dias</td>
+                <td className="TrackingPeriodDetails-content">
+                  {remainingDays(trackingPeriod)}
+                </td>
                 <td className="TrackingPeriodDetails-label">Valor a Gastar</td>
                 <td className="TrackingPeriodDetails-content">
                   {formatNumber(321)}
