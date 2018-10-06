@@ -1,4 +1,4 @@
-import { Form, Formik, FormikActions } from 'formik';
+import { Form, Formik, FormikActions, FormikProps } from 'formik';
 import * as moment from 'moment';
 import * as React from 'react';
 import * as uuid from 'uuid';
@@ -57,12 +57,12 @@ export class TrackingPeriodNew extends React.Component<
         <PageHeader title="Novo Periodo" />
 
         <Formik initialValues={this.initialValues} onSubmit={this.handleOnSave}>
-          {() => (
+          {({ values }: FormikProps<TrackingPeriod>) => (
             <Form className="NewTrackingPeriodForm">
               <InputField
                 type="number"
                 name="initialBudget"
-                label="Orcamento Inicial"
+                label="Salario no Periodo"
                 autoFocus={true}
                 required={true}
                 placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
@@ -79,13 +79,13 @@ export class TrackingPeriodNew extends React.Component<
               />
               <DatePickerField
                 name="startDate"
-                initialDate={moment()}
-                label="Data deste Orcamento"
+                initialDate={values.startDate}
+                label="Data do Recebimento do Salario"
               />
               <DatePickerField
                 name="endDate"
-                initialDate={moment().add(1, 'month')}
-                label="Data do Proximo Orcamento"
+                initialDate={values.endDate}
+                label="Data do Proximo Salario"
               />
               <Button
                 type="submit"
