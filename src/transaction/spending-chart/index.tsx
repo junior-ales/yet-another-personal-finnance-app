@@ -8,18 +8,13 @@ import {
 
 import { Transaction, TransactionCategories } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
+import { aggregateTransactionsValue, onlyDebit } from '../transactions';
 
 import './spendingChart.css';
 
 interface SpendingChartProps {
   dataValue: Transaction[];
 }
-
-const onlyDebit = (ts: Transaction[]): Transaction[] =>
-  ts.filter(t => t.type === 'debit');
-
-const sumValues = (ts: Transaction[]): number =>
-  ts.reduce((acc, t) => acc + t.value, 0);
 
 const byCategory = R.groupBy((t: Transaction) => t.category);
 
@@ -60,7 +55,7 @@ const fromDataValuesToChartData: (
 ) => PropsRadialChartData[] = R.compose(
   addColor,
   mapTransactionDetailsToChartData,
-  txByCategory => R.map(sumValues, txByCategory),
+  txByCategory => R.map(aggregateTransactionsValue, txByCategory),
   byCategory,
   onlyDebit
 );

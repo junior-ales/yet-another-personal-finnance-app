@@ -1,6 +1,5 @@
-import { fromPredicate, Option } from 'fp-ts/lib/Option';
+import { fromPredicate } from 'fp-ts/lib/Option';
 import * as moment from 'moment';
-import * as R from 'ramda';
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 
@@ -9,54 +8,27 @@ import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { PageSubHeader } from '../../shared/components/PageSubHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
-import { TrackingPeriod, Transaction } from '../../shared/store';
+import { TrackingPeriod } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
 import SpendingChart from '../../transaction/spending-chart';
 import TransactionList from '../../transaction/transaction-list';
+import {
+  aggregateTransactionsValue,
+  hasDebitTransactions
+} from '../../transaction/transactions';
 
 import './trackingPeriodView.css';
-
-const hasAnyTransaction: (
-  transactions: Transaction[]
-) => Option<Transaction[]> = fromPredicate(
-  R.compose(
-    R.not,
-    R.isEmpty
-  )
-);
-
-const onlyDebit = (ts: Transaction[]): Transaction[] =>
-  ts.filter(t => t.type === 'debit');
-
-const emptyTransactions: Transaction[] = [];
-
-const aggregateValue = (
-  transactions = emptyTransactions,
-  initialValue = 0
-): number =>
-  transactions.reduce((acc, t: Transaction) => acc + t.value, initialValue);
-
-const sumIsMoreThanZero: (transactions: Transaction[]) => boolean = R.compose(
-  (v: number) => Math.abs(v) > 0,
-  aggregateValue
-);
-
-const displayGraphs = (transactions: Transaction[]): boolean =>
-  hasAnyTransaction(transactions)
-    .map(onlyDebit)
-    .map(sumIsMoreThanZero)
-    .getOrElse(false);
 
 const currentDateIsWithingPeriod = fromPredicate(
   (t: TrackingPeriod): boolean => moment().isBetween(t.startDate, t.endDate)
 );
 
-const remainingDaysTill = (endDate: moment.Moment): number =>
-  endDate.diff(moment(), 'days');
+const remainingDaysTillEndDate = (trackingPeriod: TrackingPeriod): number =>
+  trackingPeriod.endDate.diff(moment(), 'days');
 
 const remainingDays = (trackingPeriod: TrackingPeriod): string =>
   currentDateIsWithingPeriod(trackingPeriod)
-    .map(t => remainingDaysTill(t.endDate))
+    .map(remainingDaysTillEndDate)
     .map(days => `em ${days} dia${days === 1 ? '' : 's'}`)
     .getOrElse('-');
 
@@ -73,7 +45,7 @@ export class TrackingPeriodView extends React.Component<
           {trackingPeriod.endDate.format('DD/MMM')}
         </PageHeader>
 
-        {displayGraphs(transactions) && (
+        {hasDebitTransactions(transactions) && (
           <>
             <section className="TrackingPeriodView-content">
               <SpendingChart dataValue={transactions} />
@@ -100,7 +72,10 @@ export class TrackingPeriodView extends React.Component<
                 <td className="TrackingPeriodDetails-label">Valor Corrente</td>
                 <td className="TrackingPeriodDetails-content">
                   {formatNumber(
-                    aggregateValue(transactions, trackingPeriod.initialBudget)
+                    aggregateTransactionsValue(
+                      transactions,
+                      trackingPeriod.initialBudget
+                    )
                   )}
                 </td>
                 <td className="TrackingPeriodDetails-label">
