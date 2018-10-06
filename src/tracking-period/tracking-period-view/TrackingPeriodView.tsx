@@ -14,7 +14,10 @@ import {
   aggregateTransactionsValue,
   hasDebitTransactions
 } from '../../transaction/transactions';
-import { remainindDaysTillEndDate } from '../trackingPeriods';
+import {
+  remainindDaysTillEndDate,
+  trackingPeriodNetValue
+} from '../trackingPeriods';
 
 import './trackingPeriodView.css';
 
@@ -56,7 +59,9 @@ export class TrackingPeriodView extends React.Component<
                 </td>
                 <td className="TrackingPeriodDetails-label">Valor a Gastar</td>
                 <td className="TrackingPeriodDetails-content">
-                  {formatNumber(321)}
+                  {formatNumber(
+                    trackingPeriodNetValue(trackingPeriod, transactions)
+                  )}
                 </td>
               </tr>
               <tr className="TrackingPeriodDetails-row">

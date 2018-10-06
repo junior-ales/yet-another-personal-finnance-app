@@ -1,7 +1,12 @@
 import { fromPredicate, Option } from 'fp-ts/lib/Option';
 import * as moment from 'moment';
 
-import { TrackingPeriod } from '../shared/store';
+import { TrackingPeriod, Transaction } from '../shared/store';
+import {
+  aggregateTransactionsValue,
+  onlyCredit,
+  onlyDebit
+} from '../transaction/transactions';
 
 const currentDateIsWithingPeriod = fromPredicate(
   (t: TrackingPeriod): boolean => moment().isBetween(t.startDate, t.endDate)
@@ -14,3 +19,16 @@ export const remainindDaysTillEndDate = (
   trackingPeriod: TrackingPeriod
 ): Option<number> =>
   currentDateIsWithingPeriod(trackingPeriod).map(daysTillEndDate);
+
+export const trackingPeriodNetValue = (
+  trackingPeriod: TrackingPeriod,
+  transactions: Transaction[]
+): number => {
+  const credits =
+    trackingPeriod.initialBudget +
+    aggregateTransactionsValue(onlyCredit(transactions));
+
+  const debts = Math.abs(aggregateTransactionsValue(onlyDebit(transactions)));
+
+  return credits - debts - trackingPeriod.plannedSavings;
+};

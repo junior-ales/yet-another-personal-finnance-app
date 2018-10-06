@@ -12,8 +12,13 @@ const hasAnyTransaction: (
   )
 );
 
-export const onlyDebit = (ts: Transaction[]): Transaction[] =>
-  ts.filter(t => t.type === 'debit');
+const filterByType = (type: Transaction['type']) => (
+  ts: Transaction[]
+): Transaction[] => ts.filter(t => t.type === type);
+
+export const onlyDebit = filterByType('debit');
+
+export const onlyCredit = filterByType('credit');
 
 const emptyTransactions: Transaction[] = [];
 
