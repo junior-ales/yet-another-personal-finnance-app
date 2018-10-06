@@ -1,5 +1,3 @@
-import { fromPredicate } from 'fp-ts/lib/Option';
-import * as moment from 'moment';
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 
@@ -16,20 +14,13 @@ import {
   aggregateTransactionsValue,
   hasDebitTransactions
 } from '../../transaction/transactions';
+import { remainindDaysTillEndDate } from '../trackingPeriods';
 
 import './trackingPeriodView.css';
 
-const currentDateIsWithingPeriod = fromPredicate(
-  (t: TrackingPeriod): boolean => moment().isBetween(t.startDate, t.endDate)
-);
-
-const remainingDaysTillEndDate = (trackingPeriod: TrackingPeriod): number =>
-  trackingPeriod.endDate.diff(moment(), 'days');
-
 const remainingDays = (trackingPeriod: TrackingPeriod): string =>
-  currentDateIsWithingPeriod(trackingPeriod)
-    .map(remainingDaysTillEndDate)
-    .map(days => `em ${days} dia${days === 1 ? '' : 's'}`)
+  remainindDaysTillEndDate(trackingPeriod)
+    .map((days: number) => `em ${days} dia${days === 1 ? '' : 's'}`)
     .getOrElse('-');
 
 export class TrackingPeriodView extends React.Component<
