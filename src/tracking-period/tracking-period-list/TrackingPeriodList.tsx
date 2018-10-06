@@ -4,8 +4,9 @@ import * as React from 'react';
 import { TrackingPeriodListProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
-import { TrackingPeriod } from '../../shared/store';
+import { TrackingPeriod, Transaction } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
+import { currentValue, trackingPeriodNetValue } from '../trackingPeriods';
 
 import './trackingPeriodList.css';
 
@@ -19,12 +20,13 @@ const EmptyTrackingPeriods = () => (
 
 interface TrackingPeriodProps {
   trackingPeriod: TrackingPeriod;
+  transactions: Transaction[];
   onClick: (trackingPeriodId: string) => void;
 }
 
 const TrackingPeriod = (props: TrackingPeriodProps) => {
   const handleOnClick = (tpId: string) => () => props.onClick(tpId);
-  const { id, startDate, endDate, plannedSavings } = props.trackingPeriod;
+  const { id, startDate, endDate } = props.trackingPeriod;
 
   return (
     <li className="TrackingPeriod" onClick={handleOnClick(id)}>
@@ -36,15 +38,19 @@ const TrackingPeriod = (props: TrackingPeriodProps) => {
         </header>
         <section>
           <span className="TrackingPeriod-details">
-            <span className="TrackingPeriod-label">Planejado</span>
+            <span className="TrackingPeriod-label">A Gastar</span>
             <span className="TrackingPeriod-value">
-              {formatNumber(plannedSavings)}
+              {formatNumber(
+                trackingPeriodNetValue(props.trackingPeriod, props.transactions)
+              )}
             </span>
           </span>
           <span className="TrackingPeriod-details">
-            <span className="TrackingPeriod-label">Poupado</span>
+            <span className="TrackingPeriod-label">Corrente</span>
             <span className="TrackingPeriod-value">
-              {formatNumber(plannedSavings)}
+              {formatNumber(
+                currentValue(props.trackingPeriod, props.transactions)
+              )}
             </span>
           </span>
         </section>
@@ -64,7 +70,7 @@ export class TrackingPeriodList extends React.Component<
   };
 
   public render() {
-    const { trackingPeriods } = this.props;
+    const { trackingPeriods, transactions } = this.props;
 
     return (
       <section>
@@ -79,6 +85,7 @@ export class TrackingPeriodList extends React.Component<
                 <TrackingPeriod
                   key={t.id}
                   trackingPeriod={t}
+                  transactions={transactions}
                   onClick={this.handleSelectTrackingPeriod}
                 />
               ))}
