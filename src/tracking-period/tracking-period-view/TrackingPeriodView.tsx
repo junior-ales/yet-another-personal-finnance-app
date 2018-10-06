@@ -53,18 +53,22 @@ export class TrackingPeriodView extends React.Component<
           <table className="TrackingPeriodDetails-table">
             <tbody>
               <tr className="TrackingPeriodDetails-row">
+                <td className="TrackingPeriodDetails-label">Salario</td>
+                <td className="TrackingPeriodDetails-content">
+                  {formatNumber(trackingPeriod.initialBudget)}
+                </td>
                 <td className="TrackingPeriodDetails-label">Proximo Salario</td>
                 <td className="TrackingPeriodDetails-content">
                   {remainingDays(trackingPeriod)}
                 </td>
+              </tr>
+              <tr className="TrackingPeriodDetails-row">
                 <td className="TrackingPeriodDetails-label">Valor a Gastar</td>
                 <td className="TrackingPeriodDetails-content">
                   {formatNumber(
                     trackingPeriodNetValue(trackingPeriod, transactions)
                   )}
                 </td>
-              </tr>
-              <tr className="TrackingPeriodDetails-row">
                 <td className="TrackingPeriodDetails-label">Valor Corrente</td>
                 <td className="TrackingPeriodDetails-content">
                   {formatNumber(
@@ -74,12 +78,16 @@ export class TrackingPeriodView extends React.Component<
                     )
                   )}
                 </td>
+              </tr>
+              <tr className="TrackingPeriodDetails-row">
                 <td className="TrackingPeriodDetails-label">
                   Meta de Poupanca
                 </td>
                 <td className="TrackingPeriodDetails-content">
                   {formatNumber(trackingPeriod.plannedSavings)}
                 </td>
+                <td className="TrackingPeriodDetails-label" />
+                <td className="TrackingPeriodDetails-content" />
               </tr>
             </tbody>
           </table>
