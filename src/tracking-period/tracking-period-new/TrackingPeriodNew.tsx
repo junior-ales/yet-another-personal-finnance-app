@@ -63,6 +63,8 @@ export class TrackingPeriodNew extends React.Component<
                 type="number"
                 name="initialBudget"
                 label="Orcamento Inicial"
+                autoFocus={true}
+                required={true}
                 placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
                 onFocus={this.startEditingField}
                 onBlur={this.finishEditingField}

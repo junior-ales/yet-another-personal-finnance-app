@@ -97,6 +97,7 @@ export class TransactionNew extends React.Component<
                 name="description"
                 label="Descricao"
                 placeholder="Descricao da transacao financeira"
+                autoFocus={true}
                 onFocus={this.startEditingField}
                 onBlur={this.finishEditingField}
               />
@@ -115,6 +116,7 @@ export class TransactionNew extends React.Component<
                 name="value"
                 label="Valor"
                 placeholder="Utilize apenas numeros e ponto. Ex: 42.42"
+                required={true}
                 onFocus={this.startEditingField}
                 onBlur={this.finishEditingField}
               />
