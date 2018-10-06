@@ -21,7 +21,7 @@ export const remainindDaysTillEndDate = (
 ): Option<number> =>
   currentDateIsWithingPeriod(trackingPeriod).map(daysTillEndDate);
 
-export const trackingPeriodNetValue = (
+export const netValue = (
   trackingPeriod: TrackingPeriod,
   transactions: Transaction[]
 ): number => {
@@ -42,3 +42,17 @@ export const currentValue = (
     transactionsTill(moment(), transactions),
     trackingPeriod.initialBudget
   );
+
+const notLowerThanZero = (num: number): number => (num < 0 ? 0 : num);
+
+export const currentSavings = (
+  trackingPeriod: TrackingPeriod,
+  transactions: Transaction[]
+): number => {
+  const difference =
+    trackingPeriod.plannedSavings + netValue(trackingPeriod, transactions);
+
+  return difference > trackingPeriod.plannedSavings
+    ? trackingPeriod.plannedSavings
+    : notLowerThanZero(difference);
+};

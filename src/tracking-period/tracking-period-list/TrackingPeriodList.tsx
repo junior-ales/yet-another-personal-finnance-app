@@ -6,7 +6,7 @@ import { ButtonLink } from '../../shared/components/ButtonLink';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { TrackingPeriod, Transaction } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
-import { currentValue, trackingPeriodNetValue } from '../trackingPeriods';
+import { currentValue, netValue } from '../trackingPeriods';
 
 import './trackingPeriodList.css';
 
@@ -40,9 +40,7 @@ const TrackingPeriod = (props: TrackingPeriodProps) => {
           <span className="TrackingPeriod-details">
             <span className="TrackingPeriod-label">A Gastar</span>
             <span className="TrackingPeriod-value">
-              {formatNumber(
-                trackingPeriodNetValue(props.trackingPeriod, props.transactions)
-              )}
+              {formatNumber(netValue(props.trackingPeriod, props.transactions))}
             </span>
           </span>
           <span className="TrackingPeriod-details">
