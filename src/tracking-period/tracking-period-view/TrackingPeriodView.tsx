@@ -10,11 +10,9 @@ import { TrackingPeriod } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
 import SpendingChart from '../../transaction/spending-chart';
 import TransactionList from '../../transaction/transaction-list';
+import { hasDebitTransactions } from '../../transaction/transactions';
 import {
-  aggregateTransactionsValue,
-  hasDebitTransactions
-} from '../../transaction/transactions';
-import {
+  currentValue,
   remainindDaysTillEndDate,
   trackingPeriodNetValue
 } from '../trackingPeriods';
@@ -71,12 +69,7 @@ export class TrackingPeriodView extends React.Component<
                 </td>
                 <td className="TrackingPeriodDetails-label">Valor Corrente</td>
                 <td className="TrackingPeriodDetails-content">
-                  {formatNumber(
-                    aggregateTransactionsValue(
-                      transactions,
-                      trackingPeriod.initialBudget
-                    )
-                  )}
+                  {formatNumber(currentValue(trackingPeriod, transactions))}
                 </td>
               </tr>
               <tr className="TrackingPeriodDetails-row">

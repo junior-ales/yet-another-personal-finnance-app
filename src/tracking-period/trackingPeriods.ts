@@ -5,7 +5,8 @@ import { TrackingPeriod, Transaction } from '../shared/store';
 import {
   aggregateTransactionsValue,
   onlyCredit,
-  onlyDebit
+  onlyDebit,
+  transactionsTill
 } from '../transaction/transactions';
 
 const currentDateIsWithingPeriod = fromPredicate(
@@ -32,3 +33,12 @@ export const trackingPeriodNetValue = (
 
   return credits - debts - trackingPeriod.plannedSavings;
 };
+
+export const currentValue = (
+  trackingPeriod: TrackingPeriod,
+  transactions: Transaction[]
+): number =>
+  aggregateTransactionsValue(
+    transactionsTill(moment(), transactions),
+    trackingPeriod.initialBudget
+  );

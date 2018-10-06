@@ -1,4 +1,5 @@
 import { fromPredicate, Option } from 'fp-ts/lib/Option';
+import { Moment } from 'moment';
 import * as R from 'ramda';
 
 import { Transaction } from '../shared/store';
@@ -19,6 +20,11 @@ const filterByType = (type: Transaction['type']) => (
 export const onlyDebit = filterByType('debit');
 
 export const onlyCredit = filterByType('credit');
+
+export const transactionsTill = (
+  date: Moment,
+  transactions: Transaction[]
+): Transaction[] => transactions.filter(t => t.date.isSameOrBefore(date));
 
 const emptyTransactions: Transaction[] = [];
 
