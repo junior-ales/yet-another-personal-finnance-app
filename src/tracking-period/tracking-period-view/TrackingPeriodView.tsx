@@ -1,4 +1,4 @@
-import { fromPredicate } from 'fp-ts/lib/Option';
+import { fromPredicate, Option } from 'fp-ts/lib/Option';
 import * as moment from 'moment';
 import * as R from 'ramda';
 import * as React from 'react';
@@ -16,6 +16,18 @@ import TransactionList from '../../transaction/transaction-list';
 
 import './trackingPeriodView.css';
 
+const hasAnyTransaction: (
+  transactions: Transaction[]
+) => Option<Transaction[]> = fromPredicate(
+  R.compose(
+    R.not,
+    R.isEmpty
+  )
+);
+
+const onlyDebit = (ts: Transaction[]): Transaction[] =>
+  ts.filter(t => t.type === 'debit');
+
 const emptyTransactions: Transaction[] = [];
 
 const aggregateValue = (
@@ -23,6 +35,17 @@ const aggregateValue = (
   initialValue = 0
 ): number =>
   transactions.reduce((acc, t: Transaction) => acc + t.value, initialValue);
+
+const sumIsMoreThanZero: (transactions: Transaction[]) => boolean = R.compose(
+  (v: number) => Math.abs(v) > 0,
+  aggregateValue
+);
+
+const displayGraphs = (transactions: Transaction[]): boolean =>
+  hasAnyTransaction(transactions)
+    .map(onlyDebit)
+    .map(sumIsMoreThanZero)
+    .getOrElse(false);
 
 const currentDateIsWithingPeriod = fromPredicate(
   (t: TrackingPeriod): boolean => moment().isBetween(t.startDate, t.endDate)
@@ -50,7 +73,7 @@ export class TrackingPeriodView extends React.Component<
           {trackingPeriod.endDate.format('DD/MMM')}
         </PageHeader>
 
-        {R.not(R.isEmpty(transactions)) && (
+        {displayGraphs(transactions) && (
           <>
             <section className="TrackingPeriodView-content">
               <SpendingChart dataValue={transactions} />
