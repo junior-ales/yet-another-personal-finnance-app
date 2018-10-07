@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import { TransactionViewProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
+import { ButtonsGroup } from '../../shared/components/ButtonsGroup';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
 import { formatNumber } from '../../shared/utils/formatNumber';
@@ -25,11 +26,13 @@ export class TransactionView extends React.Component<TransactionViewProps> {
           <p>{formatNumber(transaction.value)}</p>
         </section>
 
-        <ButtonLink
-          to={`/tracking-period/${transaction.trackingPeriodId}`}
-          secondary={true}
-          label="Voltar"
-        />
+        <ButtonsGroup>
+          <ButtonLink
+            to={`/tracking-period/${transaction.trackingPeriodId}`}
+            secondary={true}
+            label="Voltar"
+          />
+        </ButtonsGroup>
       </section>
     ) : (
       <Route component={RouteNotFound} />

@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import './button.css';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<{}> {
-  fixDown?: boolean;
+export interface ButtonProps extends React.ButtonHTMLAttributes<{}> {
+  halfSize?: boolean;
   secondary?: boolean;
 }
 
@@ -13,25 +13,20 @@ export const Button: React.SFC<ButtonProps> = props => {
     value,
     type = 'submit',
     secondary,
-    fixDown,
+    halfSize,
     children,
     ...otherProps
   } = props;
 
-  const buttonWrapperClasses = classNames('Button-wrapper', {
-    'is-fixedDown': fixDown
-  });
-
   const buttonClasses = classNames('Button', {
     'Button--primary': !secondary,
-    'Button--secondary': secondary
+    'Button--secondary': secondary,
+    'is-halfSize': halfSize
   });
 
   return (
-    <div className={buttonWrapperClasses}>
-      <button type={type} className={buttonClasses} {...otherProps}>
-        {value ? value : children}
-      </button>
-    </div>
+    <button type={type} className={buttonClasses} {...otherProps}>
+      {value ? value : children}
+    </button>
   );
 };

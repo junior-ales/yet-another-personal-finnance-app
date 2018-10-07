@@ -5,6 +5,7 @@ import * as uuid from 'uuid';
 
 import { TrackingPeriodNewProps } from '.';
 import { Button } from '../../shared/components/Button';
+import { ButtonsGroup } from '../../shared/components/ButtonsGroup';
 import { DatePickerField } from '../../shared/components/DatePickerField';
 import { InputField } from '../../shared/components/InputField';
 import { PageHeader } from '../../shared/components/PageHeader';
@@ -87,11 +88,9 @@ export class TrackingPeriodNew extends React.Component<
                 initialDate={values.endDate}
                 label="Data do Proximo Salario"
               />
-              <Button
-                type="submit"
-                value="Salvar"
-                fixDown={this.state.isEditing}
-              />
+              <ButtonsGroup fixDown={this.state.isEditing}>
+                <Button type="submit" value="Salvar" />
+              </ButtonsGroup>
             </Form>
           )}
         </Formik>

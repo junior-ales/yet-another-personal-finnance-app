@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import { TrackingPeriodViewProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
+import { ButtonsGroup } from '../../shared/components/ButtonsGroup';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { PageSubHeader } from '../../shared/components/PageSubHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
@@ -90,7 +91,12 @@ const NonEmptyTrackingPeriodView: React.SFC<
 
       <TransactionList transactions={transactions} />
 
-      <ButtonLink to={match.url + '/transaction/new'} label="Criar Transacao" />
+      <ButtonsGroup>
+        <ButtonLink
+          to={match.url + '/transaction/new'}
+          label="Criar Transacao"
+        />
+      </ButtonsGroup>
     </section>
   );
 };

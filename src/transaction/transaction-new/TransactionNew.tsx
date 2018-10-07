@@ -5,6 +5,7 @@ import * as uuid from 'uuid';
 
 import { TransactionNewProps } from '.';
 import { Button } from '../../shared/components/Button';
+import { ButtonsGroup } from '../../shared/components/ButtonsGroup';
 import { DatePickerField } from '../../shared/components/DatePickerField';
 import { InlineSelectionField } from '../../shared/components/InlineSelectionField';
 import { InputField } from '../../shared/components/InputField';
@@ -125,11 +126,9 @@ export class TransactionNew extends React.Component<
                 initialDate={moment()}
                 label="Data"
               />
-              <Button
-                type="submit"
-                value="Salvar"
-                fixDown={this.state.isEditing}
-              />
+              <ButtonsGroup fixDown={this.state.isEditing}>
+                <Button type="submit" value="Salvar" />
+              </ButtonsGroup>
             </Form>
           )}
         </Formik>

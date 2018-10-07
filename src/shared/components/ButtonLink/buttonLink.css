@@ -1,17 +1,3 @@
-.ButtonLink-wrapper {
-  position: fixed;
-  bottom: 1em;
-  left: 0;
-  text-align: center;
-  width: 100%;
-  padding: 0 1em;
-}
-
-.ButtonLink-wrapper.is-fixedDown {
-  position: relative;
-  padding: 1em 0 0;
-}
-
 .ButtonLink {
   display: inline-block;
   width: 100%;
@@ -21,6 +7,14 @@
   text-transform: uppercase;
   text-decoration: none;
   border: 2px solid;
+}
+
+.ButtonLink.is-halfSize {
+  width: 45%;
+}
+
+.is-halfSize + .is-halfSize {
+  margin-left: 1em;
 }
 
 .ButtonLink--primary {

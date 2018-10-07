@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { TrackingPeriodListProps } from '.';
 import { ButtonLink } from '../../shared/components/ButtonLink';
+import { ButtonsGroup } from '../../shared/components/ButtonsGroup';
 import { PageHeader } from '../../shared/components/PageHeader';
 import { TrackingPeriod, Transaction } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
@@ -90,7 +91,9 @@ export class TrackingPeriodList extends React.Component<
             </ul>
           )}
 
-          <ButtonLink to="/tracking-period/new" label="Criar Periodo" />
+          <ButtonsGroup>
+            <ButtonLink to="/tracking-period/new" label="Criar Periodo" />
+          </ButtonsGroup>
         </section>
       </section>
     );
