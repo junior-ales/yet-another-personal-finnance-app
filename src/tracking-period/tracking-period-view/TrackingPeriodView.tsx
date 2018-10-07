@@ -92,6 +92,7 @@ const NonEmptyTrackingPeriodView: React.SFC<
       <TransactionList transactions={transactions} />
 
       <ButtonsGroup>
+        <ButtonLink to={`/tracking-period`} secondary={true} label="Voltar" />
         <ButtonLink
           to={match.url + '/transaction/new'}
           label="Criar Transacao"
