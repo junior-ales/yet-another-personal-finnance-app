@@ -8,8 +8,14 @@ export const selectedTransactionReducer: Reducer<
   SelectedTransaction,
   ActionsType
 > = (state = null, action) => {
-  if (action.type === ActionKeys.SELECT_TRANSACTION) {
-    return action.payload;
+  switch (action.type) {
+    case ActionKeys.SELECT_TRANSACTION:
+      return action.payload;
+
+    case ActionKeys.DELETE_TRANSACTION:
+      return null;
+
+    default:
+      return state;
   }
-  return state;
 };

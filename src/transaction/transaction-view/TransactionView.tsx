@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Route } from 'react-router-dom';
 
 import { TransactionViewProps } from '.';
+import { Button } from '../../shared/components/Button';
 import { ButtonLink } from '../../shared/components/ButtonLink';
 import { ButtonsGroup } from '../../shared/components/ButtonsGroup';
 import { PageHeader } from '../../shared/components/PageHeader';
@@ -11,6 +12,14 @@ import { formatNumber } from '../../shared/utils/formatNumber';
 import './transactionView.css';
 
 export class TransactionView extends React.Component<TransactionViewProps> {
+  public handleDeleteTransaction = () => {
+    const { onDeleteTransaction, transaction, history } = this.props;
+
+    if (transaction) {
+      onDeleteTransaction(transaction, history);
+    }
+  };
+
   public render() {
     const { transaction } = this.props;
 
@@ -27,6 +36,9 @@ export class TransactionView extends React.Component<TransactionViewProps> {
         </section>
 
         <ButtonsGroup>
+          <Button type="button" onClick={this.handleDeleteTransaction}>
+            Delete
+          </Button>
           <ButtonLink
             to={`/tracking-period/${transaction.trackingPeriodId}`}
             secondary={true}
