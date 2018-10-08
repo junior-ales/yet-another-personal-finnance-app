@@ -1,13 +1,23 @@
 .ButtonsGroup {
+  display: flex;
+  justify-content: space-evenly;
   position: fixed;
   bottom: 1em;
   left: 0;
   text-align: center;
   width: 100%;
-  padding: 0 1em;
 }
 
 .ButtonsGroup.is-fixedDown {
   position: relative;
-  padding: 1em 0 0;
+}
+
+.ButtonsGroup.is-fixedDown > .Button,
+.ButtonsGroup.is-fixedDown > .ButtonLink {
+  margin: 0;
+}
+
+.is-halfSize:nth-last-child(1) {
+  margin-left: 0;
+  margin-right: 1em;
 }

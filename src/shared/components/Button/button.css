@@ -1,5 +1,5 @@
 .Button {
-  display: inline-block;
+  flex-grow: 1;
   border: none;
   width: 100%;
   padding: 1em;
@@ -8,14 +8,7 @@
   text-transform: uppercase;
   text-decoration: none;
   border: 2px solid;
-}
-
-.Button.is-halfSize {
-  width: 45%;
-}
-
-.is-halfSize + .is-halfSize {
-  margin-left: 1em;
+  margin: 0 1em;
 }
 
 .Button--primary {
