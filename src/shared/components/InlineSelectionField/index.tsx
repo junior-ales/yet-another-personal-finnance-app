@@ -27,6 +27,11 @@ export function InlineSelectionField<T = {}>(props: InlineSelectionFieldProps) {
             'is-active': field.value === choiceValue
           });
 
+        const buttonsBoxClasses = (quantity: number): string =>
+          classNames('InlineSelectionField-componentBox', {
+            'is-halfSize': quantity === 2
+          });
+
         return (
           <div className="InlineSelectionField">
             <div className="InlineSelectionField-componentBox">
@@ -34,7 +39,7 @@ export function InlineSelectionField<T = {}>(props: InlineSelectionFieldProps) {
                 {props.label}
               </label>
             </div>
-            <div className="InlineSelectionField-componentBox">
+            <div className={buttonsBoxClasses(props.choices.length)}>
               {props.choices.map(choice => (
                 <button
                   key={'choice-' + choice.value}

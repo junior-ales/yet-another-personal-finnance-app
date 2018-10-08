@@ -3,21 +3,29 @@
 }
 
 .InlineSelectionField-componentBox {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 0.5em;
 }
 
+.InlineSelectionField-componentBox.is-halfSize {
+  width: 50%;
+}
+
 .InlineSelectionField-button {
+  flex-grow: 1;
   background: none;
   background-color: #fafafa;
   color: #616161;
   border: 1px solid #616161;
   padding: 0.5em 0.75em;
+  margin-right: 1em;
   outline: none;
   text-transform: capitalize;
 }
 
-.InlineSelectionField-button + .InlineSelectionField-button {
-  margin-left: 0.5em;
+.InlineSelectionField-button:nth-last-child(1) {
+  margin-right: 0;
 }
 
 .InlineSelectionField-button.is-active {
