@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Route } from 'react-router-dom';
 
 import { TrackingPeriodViewProps } from '.';
+import SpendingChart from '../../chart/spending-chart';
 import { ButtonLink } from '../../shared/components/ButtonLink';
 import { ButtonsGroup } from '../../shared/components/ButtonsGroup';
 import { PageHeader } from '../../shared/components/PageHeader';
@@ -9,7 +10,6 @@ import { PageSubHeader } from '../../shared/components/PageSubHeader';
 import { RouteNotFound } from '../../shared/components/RouteNotFound';
 import { TrackingPeriod } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
-import SpendingChart from '../../transaction/spending-chart';
 import TransactionList from '../../transaction/transaction-list';
 import { hasDebitTransactions } from '../../transaction/transactions';
 import {

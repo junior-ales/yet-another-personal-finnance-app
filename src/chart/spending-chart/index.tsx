@@ -8,7 +8,10 @@ import {
 
 import { Transaction, TransactionCategories } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
-import { aggregateTransactionsValue, onlyDebit } from '../transactions';
+import {
+  aggregateTransactionsValue,
+  onlyDebit
+} from '../../transaction/transactions';
 
 import './spendingChart.css';
 
