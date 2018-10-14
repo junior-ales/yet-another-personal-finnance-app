@@ -1,9 +1,10 @@
 import * as R from 'ramda';
 import * as React from 'react';
 
+import { InlineSelectionRow } from 'src/shared/components/InlineSelectionRow';
 import { TransactionListProps } from '.';
 import { PageSubHeader } from '../../shared/components/PageSubHeader';
-import { Transaction } from '../../shared/store';
+import { Transaction, TransactionCategories } from '../../shared/store';
 import { formatNumber } from '../../shared/utils/formatNumber';
 
 import './transactionList.css';
@@ -20,7 +21,7 @@ const categoriesMap = {
   transport: 'transporte'
 };
 
-const Transaction = (props: TransactionProps) => {
+const Transaction: React.SFC<TransactionProps> = props => {
   const { onClick, transaction } = props;
   const handleOnClick = (id: string) => () => onClick(id);
 
@@ -51,10 +52,34 @@ const Transaction = (props: TransactionProps) => {
   );
 };
 
-export class TransactionList extends React.Component<TransactionListProps> {
+interface TransactionListState {
+  filter: 'all' | TransactionCategories;
+}
+
+type FilterOptions = TransactionListState['filter'];
+
+export class TransactionList extends React.Component<
+  TransactionListProps,
+  TransactionListState
+> {
+  constructor(props: TransactionListProps) {
+    super(props);
+
+    this.state = { filter: 'all' };
+  }
+
   public handleSelectTransaction = (transactionId: string): void => {
     this.props.onSelectTransaction(transactionId, this.props.history);
   };
+
+  public onFilterChange = (value: FilterOptions) => () => {
+    this.setState({ filter: value });
+  };
+
+  public filteredTransactions = (): Transaction[] =>
+    this.state.filter === 'all'
+      ? this.props.transactions
+      : this.props.transactions.filter(t => t.category === this.state.filter);
 
   public render() {
     const { transactions } = this.props;
@@ -64,8 +89,22 @@ export class TransactionList extends React.Component<TransactionListProps> {
         {R.not(R.isEmpty(transactions)) && (
           <>
             <PageSubHeader title="Transacoes" />
+
+            <InlineSelectionRow<FilterOptions>
+              className="TransactionList-filter"
+              selectedValue={this.state.filter}
+              handleOnClick={this.onFilterChange}
+              choices={[
+                { label: 'Gasto Fixo', value: 'fixed-expense' },
+                { label: 'Alimentacao', value: 'food' },
+                { label: 'Outros', value: 'other' },
+                { label: 'Transporte', value: 'transport' },
+                { label: 'Todas', value: 'all' }
+              ]}
+            />
+
             <ul className="TransactionList">
-              {transactions.map(t => (
+              {this.filteredTransactions().map(t => (
                 <Transaction
                   key={t.id}
                   transaction={t}

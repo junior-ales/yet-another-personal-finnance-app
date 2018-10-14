@@ -20,6 +20,10 @@
   width: 90%;
 }
 
+.TransactionList-filter.InlineSelectionRow {
+  margin-bottom: 0;
+}
+
 .Transaction-value {
   font-size: 1.25em;
   vertical-align: super;

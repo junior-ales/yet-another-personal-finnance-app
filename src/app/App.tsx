@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import ChartView from '../chart/chart-view';
 import TrackingPeriodList from '../tracking-period/tracking-period-list';
 import TrackingPeriodNew from '../tracking-period/tracking-period-new';
 import TrackingPeriodView from '../tracking-period/tracking-period-view';
@@ -45,11 +44,6 @@ export class App extends React.Component {
             exact={true}
             path="/tracking-period/:trackingPeriodId/transaction/:transactionId"
             component={TransactionView}
-          />
-          <Route
-            exact={true}
-            path="/tracking-period/:trackingPeriodId/graph/debit"
-            component={ChartView}
           />
           <Route component={RouteNotFound} />
         </Switch>

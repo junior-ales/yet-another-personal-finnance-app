@@ -1,8 +1,7 @@
-import * as classNames from 'classnames';
 import { Field, FieldProps } from 'formik';
 import * as React from 'react';
 
-import './inlineSelectionField.css';
+import { InlineSelectionRow } from '../InlineSelectionRow';
 
 interface InlineSelectionFieldChoices {
   label: string;
@@ -22,36 +21,13 @@ export function InlineSelectionField<T = {}>(props: InlineSelectionFieldProps) {
         const handleOnClick = (value: string | number) => () =>
           form.setFieldValue(field.name, value);
 
-        const buttonClasses = (choiceValue: string | number): string =>
-          classNames('InlineSelectionField-button', {
-            'is-active': field.value === choiceValue
-          });
-
-        const buttonsBoxClasses = (quantity: number): string =>
-          classNames('InlineSelectionField-componentBox', {
-            'is-halfSize': quantity === 2
-          });
-
         return (
-          <div className="InlineSelectionField">
-            <div className="InlineSelectionField-componentBox">
-              <label className="InlineSelectionField-label">
-                {props.label}
-              </label>
-            </div>
-            <div className={buttonsBoxClasses(props.choices.length)}>
-              {props.choices.map(choice => (
-                <button
-                  key={'choice-' + choice.value}
-                  type="button"
-                  className={buttonClasses(choice.value)}
-                  onClick={handleOnClick(choice.value)}
-                >
-                  {choice.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          <InlineSelectionRow
+            selectedValue={field.value}
+            choices={props.choices}
+            label={props.label}
+            handleOnClick={handleOnClick}
+          />
         );
       }}
     </Field>

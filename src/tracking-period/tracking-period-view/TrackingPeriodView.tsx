@@ -33,12 +33,6 @@ interface NonEmptyTrackingPeriodProps extends TrackingPeriodViewProps {
 class NonEmptyTrackingPeriodView extends React.Component<
   NonEmptyTrackingPeriodProps
 > {
-  public handleClickOnGraph = () => {
-    // TODO uncomment it to wire on the chart view page
-    // const { history, location } = this.props;
-    // history.push(location.pathname + '/graph/debit');
-  };
-
   public render() {
     const { trackingPeriod, transactions, match } = this.props;
 
@@ -51,10 +45,7 @@ class NonEmptyTrackingPeriodView extends React.Component<
 
         {hasDebitTransactions(transactions) && (
           <>
-            <section
-              className="TrackingPeriodView-content"
-              onClick={this.handleClickOnGraph}
-            >
+            <section className="TrackingPeriodView-content">
               <SpendingChart dataValue={transactions} />
             </section>
 

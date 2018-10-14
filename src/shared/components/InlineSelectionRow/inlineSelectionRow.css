@@ -1,18 +1,22 @@
-.InlineSelectionField {
+.InlineSelectionRow {
   margin-bottom: 1.5em;
 }
 
-.InlineSelectionField-componentBox {
+.InlineSelectionRow-componentBox {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5em;
 }
 
-.InlineSelectionField-componentBox.is-halfSize {
+.InlineSelectionRow-componentBox.is-halfSize {
   width: 50%;
 }
 
-.InlineSelectionField-button {
+.InlineSelectionRow-componentBox.no-gutter > .InlineSelectionRow-button {
+  margin-right: 0;
+}
+
+.InlineSelectionRow-button {
   flex-grow: 1;
   background: none;
   background-color: #fafafa;
@@ -24,10 +28,10 @@
   text-transform: capitalize;
 }
 
-.InlineSelectionField-button:nth-last-child(1) {
+.InlineSelectionRow-button:nth-last-child(1) {
   margin-right: 0;
 }
 
-.InlineSelectionField-button.is-active {
+.InlineSelectionRow-button.is-active {
   background-color: #bdbdbd;
 }
